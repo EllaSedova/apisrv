@@ -21,8 +21,8 @@ func (a *App) RegisterVFS(cfg vfs.Config) error {
 		return err
 	}
 
-	cr := db.NewCommonRepo(a.db)
-	vfsRepo := vfsdb.NewVfsRepo(a.db)
+	cr := db.NewCommonRepo(a.dbo)
+	vfsRepo := vfsdb.NewVfsRepo(a.dbo)
 	a.echo.Any("/v1/vfs/upload/file", zm.EchoHandler(vt.HTTPAuthMiddleware(cr, vf.UploadHandler(vfsRepo))))
 	a.echo.Any("/v1/vfs/upload/hash", echo.WrapHandler(vt.HTTPAuthMiddleware(cr, vf.HashUploadHandler(&vfsRepo))))
 	a.echo.GET(a.cfg.VFS.WebPath, echo.WrapHandler(http.StripPrefix(a.cfg.VFS.WebPath, http.FileServer(http.Dir(a.cfg.VFS.Path)))))

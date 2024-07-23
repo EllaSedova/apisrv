@@ -20,7 +20,6 @@ import (
 func (a *App) runHTTPServer(host string, port int) error {
 	listenAddress := fmt.Sprintf("%s:%d", host, port)
 	a.Printf("starting http listener at http://%s\n", listenAddress)
-
 	return a.echo.Start(listenAddress)
 }
 
@@ -55,7 +54,7 @@ func (a *App) registerDebugHandlers() {
 
 	a.echo.GET("/status", func(c echo.Context) error {
 		// test postgresql connection
-		err := a.db.Ping(c.Request().Context())
+		err := a.dbo.Ping(c.Request().Context())
 		if err != nil {
 			a.Errorf("failed to check db connection err=%q", err)
 			return c.String(http.StatusInternalServerError, "DB error")
@@ -65,12 +64,11 @@ func (a *App) registerDebugHandlers() {
 }
 
 func (a *App) registerAPIHandlers() {
-	srv := rpc.New(a.db, a.Logger, a.cfg.Server.IsDevel)
+	srv := rpc.New(a.dbo, a.Logger, a.cfg.Server.IsDevel, a.nm)
 	gen := rpcgen.FromSMD(srv.SMD())
-
 	a.echo.Any("/v1/rpc/", zm.EchoHandler(zm.XRequestID(srv)))
 	a.echo.Any("/v1/rpc/doc/", echo.WrapHandler(http.HandlerFunc(zenrpc.SMDBoxHandler)))
-	a.echo.Any("/v1/rpc/openrpc.json", echo.WrapHandler(http.HandlerFunc(rpcgen.Handler(gen.OpenRPC("apisrv", "http://localhost:8075/v1/rpc")))))
+	a.echo.Any("/v1/rpc/openrpc.json", echo.WrapHandler(http.HandlerFunc(rpcgen.Handler(gen.OpenRPC("apisrv", "http://localhost:8080/v1/rpc")))))
 	a.echo.Any("/v1/rpc/api.ts", echo.WrapHandler(http.HandlerFunc(rpcgen.Handler(gen.TSClient(nil)))))
 }
 

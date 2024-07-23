@@ -13,6 +13,8 @@
                 <Attribute Name="StatusID" AttrName="StatusID" SearchName="StatusID" Summary="true" Search="true" Max="0" Min="0" Required="true" Validate="status"></Attribute>
                 <Attribute Name="IDs" SearchName="IDs" Summary="false" Search="true" Max="0" Min="0" Required="false" Validate=""></Attribute>
                 <Attribute Name="NotID" SearchName="NotID" Summary="false" Search="true" Max="0" Min="0" Required="false" Validate=""></Attribute>
+                <Attribute Name="LastActivityAtFrom" SearchName="LastActivityAtFrom" Summary="false" Search="true" Max="0" Min="0" Required="false" Validate=""></Attribute>
+                <Attribute Name="LastActivityAtTo" SearchName="LastActivityAtTo" Summary="false" Search="true" Max="0" Min="0" Required="false" Validate=""></Attribute>
             </Attributes>
             <Template>
                 <Attribute Name="Login" VTAttrName="Login" List="true" Form="HTML_INPUT" Search="HTML_INPUT"></Attribute>
@@ -20,6 +22,8 @@
                 <Attribute Name="CreatedAt" VTAttrName="CreatedAt" List="true" Form="HTML_NONE" Search="HTML_NONE"></Attribute>
                 <Attribute Name="LastActivityAt" VTAttrName="LastActivityAt" List="true" Form="HTML_NONE" Search="HTML_NONE"></Attribute>
                 <Attribute Name="StatusID" VTAttrName="StatusID" List="true" Form="HTML_INPUT" Search="HTML_INPUT"></Attribute>
+                <Attribute Name="LastActivityAtFrom" VTAttrName="LastActivityAtFrom" List="false" Form="HTML_NONE" Search="HTML_DATETIME"></Attribute>
+                <Attribute Name="LastActivityAtTo" VTAttrName="LastActivityAtTo" List="false" Form="HTML_NONE" Search="HTML_DATETIME"></Attribute>
             </Template>
         </Entity>
     </VTEntities>

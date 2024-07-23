@@ -3,6 +3,8 @@ package rpc
 import (
 	"net/http"
 
+	"apisrv/pkg/newsportal"
+
 	"apisrv/pkg/db"
 	"apisrv/pkg/embedlog"
 
@@ -15,6 +17,10 @@ var (
 	ErrInternal       = zenrpc.NewStringError(http.StatusInternalServerError, "Internal error")
 )
 
+const (
+	NsRPC = "rpc"
+)
+
 var allowDebugFn = func() zm.AllowDebugFunc {
 	return func(req *http.Request) bool {
 		return req != nil && req.FormValue("__level") == "5"
@@ -24,7 +30,7 @@ var allowDebugFn = func() zm.AllowDebugFunc {
 //go:generate zenrpc
 
 // New returns new zenrpc Server.
-func New(dbo db.DB, logger embedlog.Logger, isDevel bool) zenrpc.Server {
+func New(dbo db.DB, logger embedlog.Logger, isDevel bool, m *newsportal.Manager) zenrpc.Server {
 	rpc := zenrpc.NewServer(zenrpc.Options{
 		ExposeSMD: true,
 		AllowCORS: true,
@@ -46,10 +52,9 @@ func New(dbo db.DB, logger embedlog.Logger, isDevel bool) zenrpc.Server {
 			zm.WithErrorLogger(errlog.Printf, zm.DefaultServerName),
 		)
 	}
-
 	// services
 	rpc.RegisterAll(map[string]zenrpc.Invoker{
-		//"sample": NewSampleService(db, logger),
+		NsRPC: NewNewsService(m),
 	})
 
 	return rpc

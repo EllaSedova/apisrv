@@ -5,6 +5,8 @@ import (
 	"net"
 	"time"
 
+	"apisrv/pkg/newsportal"
+
 	"apisrv/pkg/db"
 	"apisrv/pkg/embedlog"
 	"apisrv/pkg/vt"
@@ -36,27 +38,31 @@ type App struct {
 	embedlog.Logger
 	appName string
 	cfg     Config
-	db      db.DB
+	dbo     db.DB
 	dbc     *pg.DB
+	nr      db.NewsRepo
 	echo    *echo.Echo
+	nm      *newsportal.Manager
 	vtsrv   zenrpc.Server
 }
 
-func New(appName string, verbose bool, cfg Config, db db.DB, dbc *pg.DB) *App {
+func New(appName string, verbose bool, cfg Config, dbo db.DB, dbc *pg.DB) *App {
 	a := &App{
 		appName: appName,
 		cfg:     cfg,
-		db:      db,
+		dbo:     dbo,
 		dbc:     dbc,
 		echo:    echo.New(),
 	}
+	a.nr = db.NewNewsRepo(a.dbc)
+	a.nm = newsportal.NewManager(a.nr)
 	a.SetStdLoggers(verbose)
 	a.echo.HideBanner = true
 	a.echo.HidePort = true
 	_, mask, _ := net.ParseCIDR("0.0.0.0/0")
 	a.echo.IPExtractor = echo.ExtractIPFromRealIPHeader(echo.TrustIPRange(mask))
-	a.vtsrv = vt.New(a.db, a.Logger, a.cfg.Server.IsDevel)
-
+	a.nm = newsportal.NewManager(a.nr)
+	a.vtsrv = vt.New(a.dbo, a.Logger, a.cfg.Server.IsDevel)
 	return a
 }
 
