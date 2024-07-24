@@ -47,7 +47,7 @@
                 <Attribute Name="PublishedAt" VTAttrName="PublishedAt" List="true" Form="HTML_DATETIME" Search="HTML_DATETIME"></Attribute>
                 <Attribute Name="StatusID" VTAttrName="StatusID" List="true" Form="HTML_INPUT" Search="HTML_INPUT"></Attribute>
                 <Attribute Name="IDs" VTAttrName="IDs" List="false" Form="HTML_NONE" Search="HTML_SELECT"></Attribute>
-                <Attribute Name="Tags" VTAttrName="TagIDs" List="true" Form="HTML_INPUT" Search="HTML_INPUT"></Attribute>
+                <Attribute Name="Tags" VTAttrName="TagIDs" List="true" Form="HTML_UNKNOWN" Search="HTML_NONE"></Attribute>
             </Template>
         </Entity>
         <Entity Name="Tag" Mode="Full">

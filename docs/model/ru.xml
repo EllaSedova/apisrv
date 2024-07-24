@@ -50,6 +50,7 @@
                         <authorLabel>Автор</authorLabel>
                         <publishedAtLabel>Дата публикации</publishedAtLabel>
                         <statusIdLabel>Статус</statusIdLabel>
+                        <tagsLabel>Теги</tagsLabel>
                     </Form>
                     <List>
                         <Title>Новости</Title>
@@ -63,6 +64,7 @@
                             <statusId>Статус</statusId>
                             <ids></ids>
                             <tagIds>Теги</tagIds>
+                            <tags>Теги</tags>
                         </Filter>
                         <Headers>
                             <title>Название</title>
@@ -72,6 +74,7 @@
                             <status>Статус</status>
                             <actions>Действия</actions>
                             <tagIds>Теги</tagIds>
+                            <tags>Теги</tags>
                         </Headers>
                     </List>
                 </Entity>
