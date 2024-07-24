@@ -51,20 +51,20 @@ NS := "NONE"
 MAPPING := "common:users;vfs:vfsFiles,vfsFolders"
 
 mfd-xml:
-	@mfd-generator xml -c "postgres://postgres:postgres@localhost:5432/apisrv?sslmode=disable" -m ./docs/model/apisrv.mfd -n $(MAPPING)
+	@mfd-generator xml -c "postgres://postgres:postgres@localhost:5432/apisrv?sslmode=disable" -m ./docs/model/newsportal.mfd -n $(MAPPING)
 mfd-model:
-	@mfd-generator model -m ./docs/model/apisrv.mfd -p db -o ./pkg/db
+	@mfd-generator model -m ./docs/model/newsportal.mfd -p db -o ./pkg/db
 mfd-repo: --check-ns
-	@mfd-generator repo -m ./docs/model/apisrv.mfd -p db -o ./pkg/db -n $(NS)
+	@mfd-generator repo -m ./docs/model/newsportal.mfd -p db -o ./pkg/db -n $(NS)
 mfd-vt-xml:
-	@mfd-generator xml-vt -m ./docs/model/apisrv.mfd
+	@mfd-generator xml-vt -m ./docs/model/newsportal.mfd
 mfd-vt-rpc: --check-ns
-	@mfd-generator vt -m docs/model/apisrv.mfd -o pkg/vt -p vt -x apisrv/pkg/db -n $(NS)
+	@mfd-generator vt -m docs/model/newsportal.mfd -o pkg/vt -p vt -x apisrv/pkg/db -n $(NS)
 mfd-xml-lang:
 	#TODO: add namespaces support for xml-lang command
-	@mfd-generator xml-lang  -m ./docs/model/apisrv.mfd
-mfd-vt-template: --check-ns type-script-client
-	@mfd-generator template -m docs/model/apisrv.mfd  -o ../gold-vt/ -n $(NS)
+	@mfd-generator xml-lang  -m ./docs/model/newsportal.mfd
+mfd-vt-template: --check-ns
+	@mfd-generator template -m docs/model/newsportal.mfd  -o ../gold-vt/ -n $(NS)
 
 type-script-client: generate
 	@go run $(GOFLAGS) $(MAIN) -config=cfg/local.toml -ts_client > ../gold-vt/src/services/api/factory.ts

@@ -22,9 +22,7 @@ var nm *newsportal.Manager
 var ss *NewsService
 var e *echo.Echo
 var realNewsSummary NewsSummary
-var wrongNewsSummary NewsSummary
 var realNews News
-var wrongNews News
 
 func ptrs(r string) *string { return &r }
 func ptri(r int) *int       { return &r }
