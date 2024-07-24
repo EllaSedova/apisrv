@@ -108,6 +108,7 @@ type NewsSearch struct {
 	Title       *string    `json:"title"`
 	CategoryID  *int       `json:"categoryId"`
 	Foreword    *string    `json:"foreword"`
+	TagIDs      []int      `json:"tagIds"`
 	Author      *string    `json:"author"`
 	PublishedAt *time.Time `json:"publishedAt"`
 	StatusID    *int       `json:"statusId"`

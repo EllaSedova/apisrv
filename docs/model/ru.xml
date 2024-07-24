@@ -64,7 +64,6 @@
                             <statusId>Статус</statusId>
                             <ids></ids>
                             <tagIds>Теги</tagIds>
-                            <tags>Теги</tags>
                         </Filter>
                         <Headers>
                             <title>Название</title>
@@ -73,7 +72,6 @@
                             <publishedAt>Дата публикации</publishedAt>
                             <status>Статус</status>
                             <actions>Действия</actions>
-                            <tagIds>Теги</tagIds>
                             <tags>Теги</tags>
                         </Headers>
                     </List>
