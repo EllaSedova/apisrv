@@ -69,11 +69,9 @@ func NewNewsSummary(in *db.News) *NewsSummary {
 		ID:          in.ID,
 		Title:       in.Title,
 		CategoryID:  in.CategoryID,
-		Foreword:    in.Foreword,
-		Content:     in.Content,
+		TagIDs:      in.TagIDs,
 		Author:      in.Author,
 		PublishedAt: in.PublishedAt,
-		TagIds:      in.TagIDs,
 
 		Category: NewCategorySummary(in.Category),
 		Status:   NewStatus(in.StatusID),

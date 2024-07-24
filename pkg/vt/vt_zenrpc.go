@@ -825,11 +825,6 @@ func (NewsService) SMD() smd.ServiceInfo {
 								Type:     smd.String,
 							},
 							{
-								Name:     "content",
-								Optional: true,
-								Type:     smd.String,
-							},
-							{
 								Name:     "author",
 								Optional: true,
 								Type:     smd.String,
@@ -850,11 +845,6 @@ func (NewsService) SMD() smd.ServiceInfo {
 								Items: map[string]string{
 									"type": smd.Integer,
 								},
-							},
-							{
-								Name:     "tagIDILike",
-								Optional: true,
-								Type:     smd.Integer,
 							},
 						},
 					},
@@ -898,11 +888,6 @@ func (NewsService) SMD() smd.ServiceInfo {
 								Type:     smd.String,
 							},
 							{
-								Name:     "content",
-								Optional: true,
-								Type:     smd.String,
-							},
-							{
 								Name:     "author",
 								Optional: true,
 								Type:     smd.String,
@@ -923,11 +908,6 @@ func (NewsService) SMD() smd.ServiceInfo {
 								Items: map[string]string{
 									"type": smd.Integer,
 								},
-							},
-							{
-								Name:     "tagIDILike",
-								Optional: true,
-								Type:     smd.Integer,
 							},
 						},
 					},
@@ -985,13 +965,11 @@ func (NewsService) SMD() smd.ServiceInfo {
 									Type: smd.Integer,
 								},
 								{
-									Name: "foreword",
-									Type: smd.String,
-								},
-								{
-									Name:     "content",
-									Optional: true,
-									Type:     smd.String,
+									Name: "tagIds",
+									Type: smd.Array,
+									Items: map[string]string{
+										"type": smd.Integer,
+									},
 								},
 								{
 									Name: "author",

@@ -218,7 +218,7 @@ func (s NewsService) dbSort(ops *ViewOps) db.OpFunc {
 	}
 
 	switch ops.SortColumn {
-	case db.Columns.News.ID, db.Columns.News.Title, db.Columns.News.CategoryID, db.Columns.News.Foreword, db.Columns.News.Content, db.Columns.News.Author, db.Columns.News.PublishedAt, db.Columns.News.StatusID:
+	case db.Columns.News.ID, db.Columns.News.Title, db.Columns.News.CategoryID, db.Columns.News.Author, db.Columns.News.PublishedAt, db.Columns.News.StatusID:
 		v = db.WithSort(db.NewSortField(ops.SortColumn, ops.SortDesc))
 	}
 
@@ -250,13 +250,6 @@ func (s NewsService) Get(ctx context.Context, search *NewsSearch, viewOps *ViewO
 		return nil, InternalError(err)
 	}
 	newsList := make([]NewsSummary, 0, len(list))
-	//m := newsportal.NewManager(s.newsRepo)
-	//newsList := NewNewsSummary(list)
-	//err = m.FillTags(ctx, newsList)
-	//err := m.FillTags(ctx, newsList)
-	//if err != nil {
-	//	return nil, err
-	//}
 	for i := 0; i < len(list); i++ {
 		if news := NewNewsSummary(&list[i]); news != nil {
 			newsList = append(newsList, *news)

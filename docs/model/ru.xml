@@ -58,7 +58,6 @@
                             <title>Название</title>
                             <categoryId>Категория</categoryId>
                             <foreword>Краткое содержание</foreword>
-                            <content>Содержание</content>
                             <author>Автор</author>
                             <publishedAt>Дата публикации</publishedAt>
                             <statusId>Статус</statusId>
@@ -67,12 +66,11 @@
                         <Headers>
                             <title>Название</title>
                             <category>Категория</category>
-                            <foreword>Краткое содержание</foreword>
-                            <content>Содержание</content>
                             <author>Автор</author>
                             <publishedAt>Дата публикации</publishedAt>
                             <status>Статус</status>
                             <actions>Действия</actions>
+                            <tagIds>Теги</tagIds>
                         </Headers>
                     </List>
                 </Entity>
