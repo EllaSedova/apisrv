@@ -1,6 +1,7 @@
 package vt
 
 import (
+	"apisrv/pkg/newsportal"
 	"net/http"
 
 	"apisrv/pkg/db"
@@ -43,7 +44,7 @@ func httpAsRpcError(code int) *zenrpc.Error {
 }
 
 // New returns new zenrpc Server.
-func New(dbo db.DB, logger embedlog.Logger, isDevel bool) zenrpc.Server {
+func New(dbo db.DB, logger embedlog.Logger, isDevel bool, m *newsportal.Manager) zenrpc.Server {
 	rpc := zenrpc.NewServer(zenrpc.Options{
 		ExposeSMD: true,
 		AllowCORS: true,
@@ -75,7 +76,7 @@ func New(dbo db.DB, logger embedlog.Logger, isDevel bool) zenrpc.Server {
 		NSAuth:     NewAuthService(dbo, logger),
 		NSUser:     NewUserService(dbo, logger),
 		NSCategory: NewCategoryService(dbo, logger),
-		NSNews:     NewNewsService(dbo, logger),
+		NSNews:     NewNewsService(dbo, logger, m),
 		NSTag:      NewTagService(dbo, logger),
 	})
 

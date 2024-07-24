@@ -62,7 +62,7 @@ func New(appName string, verbose bool, cfg Config, dbo db.DB, dbc *pg.DB) *App {
 	_, mask, _ := net.ParseCIDR("0.0.0.0/0")
 	a.echo.IPExtractor = echo.ExtractIPFromRealIPHeader(echo.TrustIPRange(mask))
 	a.nm = newsportal.NewManager(a.nr)
-	a.vtsrv = vt.New(a.dbo, a.Logger, a.cfg.Server.IsDevel)
+	a.vtsrv = vt.New(a.dbo, a.Logger, a.cfg.Server.IsDevel, a.nm)
 	return a
 }
 

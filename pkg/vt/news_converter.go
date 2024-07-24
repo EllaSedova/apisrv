@@ -61,7 +61,7 @@ func NewNews(in *db.News) *News {
 	return news
 }
 
-func NewNewsSummary(in *db.News) *NewsSummary {
+func NewNewsSummary(in *newsportal.News) *NewsSummary {
 	if in == nil {
 		return nil
 	}
@@ -73,32 +73,15 @@ func NewNewsSummary(in *db.News) *NewsSummary {
 		TagIDs:      in.TagIDs,
 		Author:      in.Author,
 		PublishedAt: in.PublishedAt,
-
-		Category: NewCategorySummary(in.Category),
-		Status:   NewStatus(in.StatusID),
-	}
-}
-func NewNewsSummaryFromNewsportal(in *newsportal.News) *NewsSummary {
-	if in == nil {
-		return nil
-	}
-
-	return &NewsSummary{
-		ID:          in.ID,
-		Title:       in.Title,
-		CategoryID:  in.CategoryID,
-		TagIDs:      in.TagIDs,
-		Author:      in.Author,
-		PublishedAt: in.PublishedAt,
-		Tags:        NewTagSummaryList(NewTagSummaryListFromNewsportal(in.Tags)),
+		Tags:        NewTagSummaryList(in.Tags),
 		Category:    NewCategorySummary(in.Category.Category),
 		Status:      NewStatus(in.StatusID),
 	}
 }
 
-func NewTagSummaryListFromNewsportal(in []newsportal.Tag) (out []db.Tag) {
+func NewTagSummaryList(in []newsportal.Tag) (out []TagSummary) {
 	for i := range in {
-		out = append(out, *in[i].Tag)
+		out = append(out, *NewTagSummary(in[i].Tag))
 	}
 	return
 }
@@ -117,13 +100,6 @@ func NewTag(in *db.Tag) *Tag {
 	}
 
 	return tag
-}
-
-func NewTagSummaryList(in []db.Tag) (out []TagSummary) {
-	for i := range in {
-		out = append(out, *NewTagSummary(&in[i]))
-	}
-	return
 }
 
 func NewTagSummary(in *db.Tag) *TagSummary {

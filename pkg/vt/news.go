@@ -203,12 +203,14 @@ type NewsService struct {
 	zenrpc.Service
 	embedlog.Logger
 	newsRepo db.NewsRepo
+	m        *newsportal.Manager
 }
 
-func NewNewsService(dbo db.DB, logger embedlog.Logger) *NewsService {
+func NewNewsService(dbo db.DB, logger embedlog.Logger, m *newsportal.Manager) *NewsService {
 	return &NewsService{
 		Logger:   logger,
 		newsRepo: db.NewNewsRepo(dbo),
+		m:        m,
 	}
 }
 
@@ -250,16 +252,16 @@ func (s NewsService) Get(ctx context.Context, search *NewsSearch, viewOps *ViewO
 	if err != nil {
 		return nil, InternalError(err)
 	}
-	m := newsportal.NewManager(s.newsRepo)
 	newsList := newsportal.NewNewsList(list)
-	err = m.FillTags(ctx, newsList)
+	err = s.m.FillTags(ctx, newsList)
 
 	newNewsList := make([]NewsSummary, 0, len(list))
 	for i := 0; i < len(newsList); i++ {
-		if news := NewNewsSummaryFromNewsportal(&newsList[i]); news != nil {
+		if news := NewNewsSummary(&newsList[i]); news != nil {
 			newNewsList = append(newNewsList, *news)
 		}
 	}
+
 	return newNewsList, nil
 }
 
