@@ -245,8 +245,6 @@ func (s NewsService) Count(ctx context.Context, search *NewsSearch) (int, error)
 //zenrpc:viewOps ViewOps
 //zenrpc:return []NewsSummary
 //zenrpc:500 Internal Error
-type NewsList []News
-
 func (s NewsService) Get(ctx context.Context, search *NewsSearch, viewOps *ViewOps) ([]NewsSummary, error) {
 	list, err := s.newsRepo.NewsByFilters(ctx, search.ToDB(), viewOps.Pager(), s.dbSort(viewOps), s.newsRepo.FullNews())
 	if err != nil {
