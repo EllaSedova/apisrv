@@ -1126,6 +1126,13 @@ func (NewsService) SMD() smd.ServiceInfo {
 							Type: smd.Integer,
 						},
 						{
+							Name: "tags",
+							Type: smd.Array,
+							Items: map[string]string{
+								"$ref": "#/definitions/TagSummary",
+							},
+						},
+						{
 							Name:     "category",
 							Optional: true,
 							Ref:      "#/definitions/CategorySummary",
@@ -1139,6 +1146,42 @@ func (NewsService) SMD() smd.ServiceInfo {
 						},
 					},
 					Definitions: map[string]smd.Definition{
+						"TagSummary": {
+							Type: "object",
+							Properties: smd.PropertyList{
+								{
+									Name: "id",
+									Type: smd.Integer,
+								},
+								{
+									Name: "title",
+									Type: smd.String,
+								},
+								{
+									Name:     "status",
+									Optional: true,
+									Ref:      "#/definitions/Status",
+									Type:     smd.Object,
+								},
+							},
+						},
+						"Status": {
+							Type: "object",
+							Properties: smd.PropertyList{
+								{
+									Name: "id",
+									Type: smd.Integer,
+								},
+								{
+									Name: "alias",
+									Type: smd.String,
+								},
+								{
+									Name: "title",
+									Type: smd.String,
+								},
+							},
+						},
 						"CategorySummary": {
 							Type: "object",
 							Properties: smd.PropertyList{
@@ -1164,23 +1207,6 @@ func (NewsService) SMD() smd.ServiceInfo {
 									Optional: true,
 									Ref:      "#/definitions/Status",
 									Type:     smd.Object,
-								},
-							},
-						},
-						"Status": {
-							Type: "object",
-							Properties: smd.PropertyList{
-								{
-									Name: "id",
-									Type: smd.Integer,
-								},
-								{
-									Name: "alias",
-									Type: smd.String,
-								},
-								{
-									Name: "title",
-									Type: smd.String,
 								},
 							},
 						},
@@ -1241,6 +1267,13 @@ func (NewsService) SMD() smd.ServiceInfo {
 								Type: smd.Integer,
 							},
 							{
+								Name: "tags",
+								Type: smd.Array,
+								Items: map[string]string{
+									"$ref": "#/definitions/TagSummary",
+								},
+							},
+							{
 								Name:     "category",
 								Optional: true,
 								Ref:      "#/definitions/CategorySummary",
@@ -1254,6 +1287,42 @@ func (NewsService) SMD() smd.ServiceInfo {
 							},
 						},
 						Definitions: map[string]smd.Definition{
+							"TagSummary": {
+								Type: "object",
+								Properties: smd.PropertyList{
+									{
+										Name: "id",
+										Type: smd.Integer,
+									},
+									{
+										Name: "title",
+										Type: smd.String,
+									},
+									{
+										Name:     "status",
+										Optional: true,
+										Ref:      "#/definitions/Status",
+										Type:     smd.Object,
+									},
+								},
+							},
+							"Status": {
+								Type: "object",
+								Properties: smd.PropertyList{
+									{
+										Name: "id",
+										Type: smd.Integer,
+									},
+									{
+										Name: "alias",
+										Type: smd.String,
+									},
+									{
+										Name: "title",
+										Type: smd.String,
+									},
+								},
+							},
 							"CategorySummary": {
 								Type: "object",
 								Properties: smd.PropertyList{
@@ -1279,23 +1348,6 @@ func (NewsService) SMD() smd.ServiceInfo {
 										Optional: true,
 										Ref:      "#/definitions/Status",
 										Type:     smd.Object,
-									},
-								},
-							},
-							"Status": {
-								Type: "object",
-								Properties: smd.PropertyList{
-									{
-										Name: "id",
-										Type: smd.Integer,
-									},
-									{
-										Name: "alias",
-										Type: smd.String,
-									},
-									{
-										Name: "title",
-										Type: smd.String,
 									},
 								},
 							},
@@ -1349,6 +1401,13 @@ func (NewsService) SMD() smd.ServiceInfo {
 							Type: smd.Integer,
 						},
 						{
+							Name: "tags",
+							Type: smd.Array,
+							Items: map[string]string{
+								"$ref": "#/definitions/TagSummary",
+							},
+						},
+						{
 							Name:     "category",
 							Optional: true,
 							Ref:      "#/definitions/CategorySummary",
@@ -1362,6 +1421,42 @@ func (NewsService) SMD() smd.ServiceInfo {
 						},
 					},
 					Definitions: map[string]smd.Definition{
+						"TagSummary": {
+							Type: "object",
+							Properties: smd.PropertyList{
+								{
+									Name: "id",
+									Type: smd.Integer,
+								},
+								{
+									Name: "title",
+									Type: smd.String,
+								},
+								{
+									Name:     "status",
+									Optional: true,
+									Ref:      "#/definitions/Status",
+									Type:     smd.Object,
+								},
+							},
+						},
+						"Status": {
+							Type: "object",
+							Properties: smd.PropertyList{
+								{
+									Name: "id",
+									Type: smd.Integer,
+								},
+								{
+									Name: "alias",
+									Type: smd.String,
+								},
+								{
+									Name: "title",
+									Type: smd.String,
+								},
+							},
+						},
 						"CategorySummary": {
 							Type: "object",
 							Properties: smd.PropertyList{
@@ -1387,23 +1482,6 @@ func (NewsService) SMD() smd.ServiceInfo {
 									Optional: true,
 									Ref:      "#/definitions/Status",
 									Type:     smd.Object,
-								},
-							},
-						},
-						"Status": {
-							Type: "object",
-							Properties: smd.PropertyList{
-								{
-									Name: "id",
-									Type: smd.Integer,
-								},
-								{
-									Name: "alias",
-									Type: smd.String,
-								},
-								{
-									Name: "title",
-									Type: smd.String,
 								},
 							},
 						},
@@ -1463,6 +1541,13 @@ func (NewsService) SMD() smd.ServiceInfo {
 								Type: smd.Integer,
 							},
 							{
+								Name: "tags",
+								Type: smd.Array,
+								Items: map[string]string{
+									"$ref": "#/definitions/TagSummary",
+								},
+							},
+							{
 								Name:     "category",
 								Optional: true,
 								Ref:      "#/definitions/CategorySummary",
@@ -1476,6 +1561,42 @@ func (NewsService) SMD() smd.ServiceInfo {
 							},
 						},
 						Definitions: map[string]smd.Definition{
+							"TagSummary": {
+								Type: "object",
+								Properties: smd.PropertyList{
+									{
+										Name: "id",
+										Type: smd.Integer,
+									},
+									{
+										Name: "title",
+										Type: smd.String,
+									},
+									{
+										Name:     "status",
+										Optional: true,
+										Ref:      "#/definitions/Status",
+										Type:     smd.Object,
+									},
+								},
+							},
+							"Status": {
+								Type: "object",
+								Properties: smd.PropertyList{
+									{
+										Name: "id",
+										Type: smd.Integer,
+									},
+									{
+										Name: "alias",
+										Type: smd.String,
+									},
+									{
+										Name: "title",
+										Type: smd.String,
+									},
+								},
+							},
 							"CategorySummary": {
 								Type: "object",
 								Properties: smd.PropertyList{
@@ -1501,23 +1622,6 @@ func (NewsService) SMD() smd.ServiceInfo {
 										Optional: true,
 										Ref:      "#/definitions/Status",
 										Type:     smd.Object,
-									},
-								},
-							},
-							"Status": {
-								Type: "object",
-								Properties: smd.PropertyList{
-									{
-										Name: "id",
-										Type: smd.Integer,
-									},
-									{
-										Name: "alias",
-										Type: smd.String,
-									},
-									{
-										Name: "title",
-										Type: smd.String,
 									},
 								},
 							},
@@ -1604,6 +1708,13 @@ func (NewsService) SMD() smd.ServiceInfo {
 								Type: smd.Integer,
 							},
 							{
+								Name: "tags",
+								Type: smd.Array,
+								Items: map[string]string{
+									"$ref": "#/definitions/TagSummary",
+								},
+							},
+							{
 								Name:     "category",
 								Optional: true,
 								Ref:      "#/definitions/CategorySummary",
@@ -1617,6 +1728,42 @@ func (NewsService) SMD() smd.ServiceInfo {
 							},
 						},
 						Definitions: map[string]smd.Definition{
+							"TagSummary": {
+								Type: "object",
+								Properties: smd.PropertyList{
+									{
+										Name: "id",
+										Type: smd.Integer,
+									},
+									{
+										Name: "title",
+										Type: smd.String,
+									},
+									{
+										Name:     "status",
+										Optional: true,
+										Ref:      "#/definitions/Status",
+										Type:     smd.Object,
+									},
+								},
+							},
+							"Status": {
+								Type: "object",
+								Properties: smd.PropertyList{
+									{
+										Name: "id",
+										Type: smd.Integer,
+									},
+									{
+										Name: "alias",
+										Type: smd.String,
+									},
+									{
+										Name: "title",
+										Type: smd.String,
+									},
+								},
+							},
 							"CategorySummary": {
 								Type: "object",
 								Properties: smd.PropertyList{
@@ -1642,23 +1789,6 @@ func (NewsService) SMD() smd.ServiceInfo {
 										Optional: true,
 										Ref:      "#/definitions/Status",
 										Type:     smd.Object,
-									},
-								},
-							},
-							"Status": {
-								Type: "object",
-								Properties: smd.PropertyList{
-									{
-										Name: "id",
-										Type: smd.Integer,
-									},
-									{
-										Name: "alias",
-										Type: smd.String,
-									},
-									{
-										Name: "title",
-										Type: smd.String,
 									},
 								},
 							},
