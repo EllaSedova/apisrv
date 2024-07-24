@@ -18,7 +18,7 @@
                     <List>
                         <Title>Категории</Title>
                         <Filter>
-                            <quickFilterPlaceholder></quickFilterPlaceholder>
+                            <quickFilterPlaceholder>Поиск по названию</quickFilterPlaceholder>
                             <title>Название</title>
                             <orderNumber>Порядковый номер</orderNumber>
                             <alias>Системное имя</alias>
@@ -89,7 +89,7 @@
                     <List>
                         <Title>Теги</Title>
                         <Filter>
-                            <quickFilterPlaceholder></quickFilterPlaceholder>
+                            <quickFilterPlaceholder>Поиск по названию</quickFilterPlaceholder>
                             <title>Название</title>
                             <statusId>Статус</statusId>
                             <ids></ids>
