@@ -65,7 +65,7 @@ func (m Manager) NewsByID(ctx context.Context, id int) (*News, error) {
 		return nil, nil
 	}
 
-	n := newNewsList([]db.News{*news})
+	n := NewNewsList([]db.News{*news})
 
 	err = m.FillTags(ctx, n)
 
@@ -81,7 +81,7 @@ func (m Manager) News(ctx context.Context, categoryID, tagID, page, pageSize *in
 		return nil, nil
 	}
 
-	newsList := newNewsList(news)
+	newsList := NewNewsList(news)
 	err = m.FillTags(ctx, newsList)
 
 	return newsList, err

@@ -2,6 +2,7 @@ package vt
 
 import (
 	"apisrv/pkg/db"
+	"apisrv/pkg/newsportal"
 )
 
 func NewCategory(in *db.Category) *Category {
@@ -77,6 +78,30 @@ func NewNewsSummary(in *db.News) *NewsSummary {
 		Status:   NewStatus(in.StatusID),
 	}
 }
+func NewNewsSummaryFromNewsportal(in *newsportal.News) *NewsSummary {
+	if in == nil {
+		return nil
+	}
+
+	return &NewsSummary{
+		ID:          in.ID,
+		Title:       in.Title,
+		CategoryID:  in.CategoryID,
+		TagIDs:      in.TagIDs,
+		Author:      in.Author,
+		PublishedAt: in.PublishedAt,
+		Tags:        NewTagSummaryList(NewTagSummaryListFromNewsportal(in.Tags)),
+		Category:    NewCategorySummary(in.Category.Category),
+		Status:      NewStatus(in.StatusID),
+	}
+}
+
+func NewTagSummaryListFromNewsportal(in []newsportal.Tag) (out []db.Tag) {
+	for i := range in {
+		out = append(out, *in[i].Tag)
+	}
+	return
+}
 
 func NewTag(in *db.Tag) *Tag {
 	if in == nil {
@@ -92,6 +117,13 @@ func NewTag(in *db.Tag) *Tag {
 	}
 
 	return tag
+}
+
+func NewTagSummaryList(in []db.Tag) (out []TagSummary) {
+	for i := range in {
+		out = append(out, *NewTagSummary(&in[i]))
+	}
+	return
 }
 
 func NewTagSummary(in *db.Tag) *TagSummary {

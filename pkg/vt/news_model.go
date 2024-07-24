@@ -132,15 +132,15 @@ func (ns *NewsSearch) ToDB() *db.NewsSearch {
 }
 
 type NewsSummary struct {
-	ID          int       `json:"id"`
-	Title       string    `json:"title"`
-	CategoryID  int       `json:"categoryId"`
-	TagIDs      []int     `json:"tagIds"`
-	Author      string    `json:"author"`
-	PublishedAt time.Time `json:"publishedAt"`
-
-	Category *CategorySummary `json:"category"`
-	Status   *Status          `json:"status"`
+	ID          int              `json:"id"`
+	Title       string           `json:"title"`
+	CategoryID  int              `json:"categoryId"`
+	TagIDs      []int            `json:"tagIds"`
+	Author      string           `json:"author"`
+	PublishedAt time.Time        `json:"publishedAt"`
+	Tags        []TagSummary     `json:"tags"`
+	Category    *CategorySummary `json:"category"`
+	Status      *Status          `json:"status"`
 }
 
 type Tag struct {

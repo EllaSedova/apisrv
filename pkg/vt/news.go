@@ -1,6 +1,7 @@
 package vt
 
 import (
+	"apisrv/pkg/newsportal"
 	"context"
 
 	"apisrv/pkg/db"
@@ -244,18 +245,24 @@ func (s NewsService) Count(ctx context.Context, search *NewsSearch) (int, error)
 //zenrpc:viewOps ViewOps
 //zenrpc:return []NewsSummary
 //zenrpc:500 Internal Error
+type NewsList []News
+
 func (s NewsService) Get(ctx context.Context, search *NewsSearch, viewOps *ViewOps) ([]NewsSummary, error) {
 	list, err := s.newsRepo.NewsByFilters(ctx, search.ToDB(), viewOps.Pager(), s.dbSort(viewOps), s.newsRepo.FullNews())
 	if err != nil {
 		return nil, InternalError(err)
 	}
-	newsList := make([]NewsSummary, 0, len(list))
-	for i := 0; i < len(list); i++ {
-		if news := NewNewsSummary(&list[i]); news != nil {
-			newsList = append(newsList, *news)
+	m := newsportal.NewManager(s.newsRepo)
+	newsList := newsportal.NewNewsList(list)
+	err = m.FillTags(ctx, newsList)
+
+	newNewsList := make([]NewsSummary, 0, len(list))
+	for i := 0; i < len(newsList); i++ {
+		if news := NewNewsSummaryFromNewsportal(&newsList[i]); news != nil {
+			newNewsList = append(newNewsList, *news)
 		}
 	}
-	return newsList, nil
+	return newNewsList, nil
 }
 
 // GetByID returns a News by its ID.

@@ -14,7 +14,7 @@ func newNews(in *db.News) *News {
 	}
 }
 
-func newNewsList(in []db.News) (out []News) {
+func NewNewsList(in []db.News) (out []News) {
 	for i := range in {
 		out = append(out, *newNews(&in[i]))
 	}
