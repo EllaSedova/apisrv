@@ -2,11 +2,10 @@
     <Name>newsportal.mfd</Name>
     <PackageNames>
         <string>news</string>
-         <string>common</string>
-         <string>vfs</string>
+        <string>common</string>
     </PackageNames>
     <Languages>
-        <string>en</string>
+        <string>ru</string>
     </Languages>
     <GoPGVer>10</GoPGVer>
     <CustomTypes></CustomTypes>

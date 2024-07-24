@@ -74,7 +74,7 @@ func (m Manager) NewsByID(ctx context.Context, id int) (*News, error) {
 
 func (m Manager) News(ctx context.Context, categoryID, tagID, page, pageSize *int) ([]News, error) {
 	newPage, newPageSize := checkPagination(page, pageSize)
-	news, err := m.nr.NewsByFilters(ctx, &db.NewsSearch{CategoryID: categoryID, TagIDsILike: tagID}, db.Pager{Page: newPage, PageSize: newPageSize}, db.WithRelations(db.Columns.News.Category))
+	news, err := m.nr.NewsByFilters(ctx, &db.NewsSearch{CategoryID: categoryID, TagIDILike: tagID}, db.Pager{Page: newPage, PageSize: newPageSize}, db.WithRelations(db.Columns.News.Category))
 	if err != nil {
 		return nil, err
 	} else if len(news) == 0 {
@@ -88,7 +88,7 @@ func (m Manager) News(ctx context.Context, categoryID, tagID, page, pageSize *in
 }
 
 func (m Manager) NewsCount(ctx context.Context, categoryID, tagID *int) (*int, error) {
-	count, err := m.nr.CountNews(ctx, &db.NewsSearch{CategoryID: categoryID, TagIDsILike: tagID})
+	count, err := m.nr.CountNews(ctx, &db.NewsSearch{CategoryID: categoryID, TagIDILike: tagID})
 
 	return &count, err
 }
