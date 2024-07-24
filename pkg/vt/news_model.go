@@ -108,7 +108,7 @@ type NewsSearch struct {
 	Title       *string    `json:"title"`
 	CategoryID  *int       `json:"categoryId"`
 	Foreword    *string    `json:"foreword"`
-	TagIDs      []int      `json:"tagIds"`
+	TagIDs      *int       `json:"tagIds"`
 	Author      *string    `json:"author"`
 	PublishedAt *time.Time `json:"publishedAt"`
 	StatusID    *int       `json:"statusId"`
@@ -125,6 +125,7 @@ func (ns *NewsSearch) ToDB() *db.NewsSearch {
 		TitleILike:    ns.Title,
 		CategoryID:    ns.CategoryID,
 		ForewordILike: ns.Foreword,
+		TagIDILike:    ns.TagIDs,
 		AuthorILike:   ns.Author,
 		PublishedAt:   ns.PublishedAt,
 		StatusID:      ns.StatusID,

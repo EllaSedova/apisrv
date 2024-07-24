@@ -825,11 +825,9 @@ func (NewsService) SMD() smd.ServiceInfo {
 								Type:     smd.String,
 							},
 							{
-								Name: "tagIds",
-								Type: smd.Array,
-								Items: map[string]string{
-									"type": smd.Integer,
-								},
+								Name:     "tagIds",
+								Optional: true,
+								Type:     smd.Integer,
 							},
 							{
 								Name:     "author",
@@ -895,11 +893,9 @@ func (NewsService) SMD() smd.ServiceInfo {
 								Type:     smd.String,
 							},
 							{
-								Name: "tagIds",
-								Type: smd.Array,
-								Items: map[string]string{
-									"type": smd.Integer,
-								},
+								Name:     "tagIds",
+								Optional: true,
+								Type:     smd.Integer,
 							},
 							{
 								Name:     "author",

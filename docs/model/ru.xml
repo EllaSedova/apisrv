@@ -62,8 +62,8 @@
                             <author>Автор</author>
                             <publishedAt>Дата публикации</publishedAt>
                             <statusId>Статус</statusId>
-                            <ids></ids>
                             <tagIds>Теги</tagIds>
+                            <tags>Теги все</tags>
                         </Filter>
                         <Headers>
                             <title>Название</title>
