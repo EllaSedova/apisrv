@@ -52,7 +52,7 @@
             </Template>
         </Entity>
         <Entity Name="Tag" Mode="Full">
-            <TerminalPath>tags</TerminalPath>
+            <TerminalPath>authors</TerminalPath>
             <Attributes>
                 <Attribute Name="ID" AttrName="ID" SearchName="ID" Summary="true" Search="true" Max="0" Min="0" Required="false" Validate=""></Attribute>
                 <Attribute Name="Title" AttrName="Title" SearchName="TitleILike" Summary="true" Search="true" Max="128" Min="0" Required="true" Validate=""></Attribute>

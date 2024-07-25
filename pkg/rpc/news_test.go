@@ -72,7 +72,11 @@ func TestMain(m *testing.M) {
 				Title: "заголовок3",
 			},
 		},
-		Author:      "Автор",
+		Author: Author{
+			ID:    1,
+			Name:  "Имя1",
+			Email: "почта",
+		},
 		PublishedAt: time.Date(2024, time.July, 17, 18, 25, 28, 10745000, time.Local),
 	}
 	realNewsSummary = NewsSummary{
@@ -99,7 +103,11 @@ func TestMain(m *testing.M) {
 				Title: "заголовок3",
 			},
 		},
-		Author:      "Автор",
+		Author: Author{
+			ID:    1,
+			Name:  "Имя1",
+			Email: "почта",
+		},
 		PublishedAt: time.Date(2024, time.July, 17, 18, 25, 28, 10745000, time.Local),
 	}
 	os.Exit(m.Run())

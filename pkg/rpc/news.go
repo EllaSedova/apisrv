@@ -71,3 +71,13 @@ func (rs NewsService) NewsCountWithFilters(ctx context.Context, categoryID, tagI
 
 	return count, err
 }
+
+// Authors получение всех авторов
+func (rs NewsService) Authors(ctx context.Context) ([]Author, error) {
+	authors, err := rs.m.Authors(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	return newAuthors(authors), err
+}

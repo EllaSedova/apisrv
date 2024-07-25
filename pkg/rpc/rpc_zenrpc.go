@@ -11,14 +11,15 @@ import (
 )
 
 var RPC = struct {
-	NewsService struct{ NewsByID, Categories, Tags, NewsWithFilters, NewsCountWithFilters string }
+	NewsService struct{ NewsByID, Categories, Tags, NewsWithFilters, NewsCountWithFilters, Authors string }
 }{
-	NewsService: struct{ NewsByID, Categories, Tags, NewsWithFilters, NewsCountWithFilters string }{
+	NewsService: struct{ NewsByID, Categories, Tags, NewsWithFilters, NewsCountWithFilters, Authors string }{
 		NewsByID:             "newsbyid",
 		Categories:           "categories",
 		Tags:                 "tags",
 		NewsWithFilters:      "newswithfilters",
 		NewsCountWithFilters: "newscountwithfilters",
+		Authors:              "authors",
 	},
 }
 
@@ -69,7 +70,8 @@ func (NewsService) SMD() smd.ServiceInfo {
 						},
 						{
 							Name: "author",
-							Type: smd.String,
+							Ref:  "#/definitions/Author",
+							Type: smd.Object,
 						},
 						{
 							Name: "publishedAt",
@@ -108,6 +110,23 @@ func (NewsService) SMD() smd.ServiceInfo {
 								},
 								{
 									Name: "title",
+									Type: smd.String,
+								},
+							},
+						},
+						"Author": {
+							Type: "object",
+							Properties: smd.PropertyList{
+								{
+									Name: "authorId",
+									Type: smd.Integer,
+								},
+								{
+									Name: "name",
+									Type: smd.String,
+								},
+								{
+									Name: "email",
 									Type: smd.String,
 								},
 							},
@@ -236,7 +255,8 @@ func (NewsService) SMD() smd.ServiceInfo {
 								},
 								{
 									Name: "author",
-									Type: smd.String,
+									Ref:  "#/definitions/Author",
+									Type: smd.Object,
 								},
 								{
 									Name: "publishedAt",
@@ -279,6 +299,23 @@ func (NewsService) SMD() smd.ServiceInfo {
 								},
 							},
 						},
+						"Author": {
+							Type: "object",
+							Properties: smd.PropertyList{
+								{
+									Name: "authorId",
+									Type: smd.Integer,
+								},
+								{
+									Name: "name",
+									Type: smd.String,
+								},
+								{
+									Name: "email",
+									Type: smd.String,
+								},
+							},
+						},
 					},
 				},
 			},
@@ -299,6 +336,36 @@ func (NewsService) SMD() smd.ServiceInfo {
 				Returns: smd.JSONSchema{
 					Optional: true,
 					Type:     smd.Integer,
+				},
+			},
+			"Authors": {
+				Description: `Authors получение всех авторов`,
+				Parameters:  []smd.JSONSchema{},
+				Returns: smd.JSONSchema{
+					Type:     smd.Array,
+					TypeName: "[]Author",
+					Items: map[string]string{
+						"$ref": "#/definitions/Author",
+					},
+					Definitions: map[string]smd.Definition{
+						"Author": {
+							Type: "object",
+							Properties: smd.PropertyList{
+								{
+									Name: "authorId",
+									Type: smd.Integer,
+								},
+								{
+									Name: "name",
+									Type: smd.String,
+								},
+								{
+									Name: "email",
+									Type: smd.String,
+								},
+							},
+						},
+					},
 				},
 			},
 		},
@@ -377,6 +444,9 @@ func (s NewsService) Invoke(ctx context.Context, method string, params json.RawM
 		}
 
 		resp.Set(s.NewsCountWithFilters(ctx, args.CategoryID, args.TagID))
+
+	case RPC.NewsService.Authors:
+		resp.Set(s.Authors(ctx))
 
 	default:
 		resp = zenrpc.NewResponseError(nil, zenrpc.MethodNotFound, "", nil)

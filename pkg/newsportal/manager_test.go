@@ -458,3 +458,44 @@ func TestTagsByIDs(t *testing.T) {
 		})
 	}
 }
+
+func TestManager_Authors(t *testing.T) {
+	type fields struct {
+		nr db.NewsRepo
+	}
+	type args struct {
+		ctx context.Context
+	}
+	tests := []struct {
+		name    string
+		fields  fields
+		args    args
+		want    []Author
+		wantErr assert.ErrorAssertionFunc
+	}{
+		{
+			name: "valid args",
+			args: args{
+				ctx: context.Background(),
+			},
+			want:    []Author{{&db.Author{ID: 1, Name: "Имя1", Email: "почта", StatusID: 1}}, {&db.Author{ID: 2, Name: "Имя2", Email: "mail@gmail.com", StatusID: 1}}},
+			wantErr: assert.NoError,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+
+			got, err := nm.Authors(tt.args.ctx)
+			if !tt.wantErr(t, err, fmt.Sprintf("Authors(%v)", tt.args.ctx)) {
+				return
+			}
+			assert.NoError(t, err)
+			for i := range got {
+				assert.Equal(t, tt.want[i].ID, got[i].ID)
+				assert.Equal(t, tt.want[i].Name, got[i].Name)
+				assert.Equal(t, tt.want[i].Email, got[i].Email)
+			}
+			assert.Equalf(t, tt.want, got, "Authors(%v)", tt.args.ctx)
+		})
+	}
+}

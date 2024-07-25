@@ -56,7 +56,7 @@
 	<COLUMNS>
 	</COLUMNS>
 </COMPOSITE>
-<COMPOSITE ID="10021" Name="tags" SchemaName="public" OwnerName="" Comments="" MasterTableOID="0">
+<COMPOSITE ID="10021" Name="authors" SchemaName="public" OwnerName="" Comments="" MasterTableOID="0">
 	<COLUMNS>
 	</COLUMNS>
 </COMPOSITE>
@@ -80,7 +80,7 @@
 	<COLUMNS>
 	</COLUMNS>
 </COMPOSITE>
-<COMPOSITE ID="10032" Name="tags" SchemaName="public" OwnerName="" Comments="" MasterTableOID="1415414">
+<COMPOSITE ID="10032" Name="authors" SchemaName="public" OwnerName="" Comments="" MasterTableOID="1415414">
 	<COLUMNS>
 	</COLUMNS>
 </COMPOSITE>
@@ -272,7 +272,7 @@
 	</INDEXES>
 </ENTITY>
 
-<ENTITY ID="1415414" Name="tags" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="400" YPos="460" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
+<ENTITY ID="1415414" Name="authors" SchemaOID="0" SchemaName="public" OwnerID="0" OwnerName="" TablespaceID="0" XPos="400" YPos="460" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" FontColor="0" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="" >
 	<COLUMNS>
 		<COLUMN ID="1415415" Name="tagId" Pos="0" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="3" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
 		<COLUMN ID="1415416" Name="title" Pos="1" Datatype="1043" Type="varchar" Width="128" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>

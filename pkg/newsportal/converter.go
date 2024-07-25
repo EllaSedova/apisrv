@@ -64,3 +64,10 @@ func newAuthor(in *db.Author) *Author {
 		Author: in,
 	}
 }
+
+func newAuthors(in []db.Author) (out []Author) {
+	for i := range in {
+		out = append(out, *newAuthor(&in[i]))
+	}
+	return
+}

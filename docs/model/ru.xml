@@ -71,7 +71,7 @@
                             <publishedAt>Дата публикации</publishedAt>
                             <status>Статус</status>
                             <actions>Действия</actions>
-                            <tags>Теги</tags>
+                            <authors>Теги</authors>
                         </Headers>
                     </List>
                 </Entity>

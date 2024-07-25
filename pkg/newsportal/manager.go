@@ -116,3 +116,10 @@ func (m Manager) Tags(ctx context.Context) ([]Tag, error) {
 
 	return newTags(tags), err
 }
+
+// Authors возвращает все теги
+func (m Manager) Authors(ctx context.Context) ([]Author, error) {
+	authors, err := m.nr.AuthorsByFilters(ctx, &db.AuthorSearch{}, db.PagerNoLimit)
+
+	return newAuthors(authors), err
+}

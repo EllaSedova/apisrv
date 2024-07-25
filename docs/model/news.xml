@@ -48,7 +48,7 @@
                 <Search Name="TagIDILike" AttrName="TagIDs" SearchType="SEARCHTYPE_ARRAY_CONTAINS"></Search>
             </Searches>
         </Entity>
-        <Entity Name="Tag" Namespace="news" Table="tags">
+        <Entity Name="Tag" Namespace="news" Table="authors">
             <Attributes>
                 <Attribute Name="ID" DBName="tagId" DBType="int4" GoType="int" PK="true" Nullable="Yes" Addable="true" Updatable="false" Min="0" Max="0"></Attribute>
                 <Attribute Name="Title" DBName="title" DBType="varchar" GoType="string" PK="false" Nullable="No" Addable="true" Updatable="true" Min="0" Max="128"></Attribute>

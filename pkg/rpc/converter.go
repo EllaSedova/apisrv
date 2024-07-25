@@ -32,6 +32,7 @@ func newNewsSummary(in *newsportal.News) *NewsSummary {
 		Title:       in.Title,
 		Foreword:    in.Foreword,
 		PublishedAt: in.PublishedAt,
+		Author:      *newAuthor(in.Author),
 		Tags:        newTags(in.Tags),
 		Category:    *newCategory(in.Category),
 	}
@@ -86,4 +87,11 @@ func newAuthor(in *newsportal.Author) *Author {
 		Name:  in.Name,
 		Email: in.Email,
 	}
+}
+
+func newAuthors(in []newsportal.Author) (out []Author) {
+	for i := range in {
+		out = append(out, *newAuthor(&in[i]))
+	}
+	return
 }
