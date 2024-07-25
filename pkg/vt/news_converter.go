@@ -2,8 +2,38 @@ package vt
 
 import (
 	"apisrv/pkg/db"
-	"apisrv/pkg/newsportal"
 )
+
+func NewAuthor(in *db.Author) *Author {
+	if in == nil {
+		return nil
+	}
+
+	author := &Author{
+		ID:       in.ID,
+		Name:     in.Name,
+		Email:    in.Email,
+		StatusID: in.StatusID,
+
+		Status: NewStatus(in.StatusID),
+	}
+
+	return author
+}
+
+func NewAuthorSummary(in *db.Author) *AuthorSummary {
+	if in == nil {
+		return nil
+	}
+
+	return &AuthorSummary{
+		ID:    in.ID,
+		Name:  in.Name,
+		Email: in.Email,
+
+		Status: NewStatus(in.StatusID),
+	}
+}
 
 func NewCategory(in *db.Category) *Category {
 	if in == nil {
@@ -49,19 +79,20 @@ func NewNews(in *db.News) *News {
 		CategoryID:  in.CategoryID,
 		Foreword:    in.Foreword,
 		Content:     in.Content,
+		AuthorID:    in.AuthorID,
 		TagIDs:      in.TagIDs,
-		Author:      in.Author,
 		PublishedAt: in.PublishedAt,
 		StatusID:    in.StatusID,
 
 		Category: NewCategorySummary(in.Category),
+		Author:   NewAuthorSummary(in.Author),
 		Status:   NewStatus(in.StatusID),
 	}
 
 	return news
 }
 
-func NewNewsSummary(in *newsportal.News) *NewsSummary {
+func NewNewsSummary(in *db.News) *NewsSummary {
 	if in == nil {
 		return nil
 	}
@@ -70,20 +101,15 @@ func NewNewsSummary(in *newsportal.News) *NewsSummary {
 		ID:          in.ID,
 		Title:       in.Title,
 		CategoryID:  in.CategoryID,
-		TagIDs:      in.TagIDs,
-		Author:      in.Author,
+		Foreword:    in.Foreword,
+		Content:     in.Content,
+		AuthorID:    in.AuthorID,
 		PublishedAt: in.PublishedAt,
-		Tags:        NewTagSummaryList(in.Tags),
-		Category:    NewCategorySummary(in.Category.Category),
-		Status:      NewStatus(in.StatusID),
-	}
-}
 
-func NewTagSummaryList(in []newsportal.Tag) (out []TagSummary) {
-	for i := range in {
-		out = append(out, *NewTagSummary(in[i].Tag))
+		Category: NewCategorySummary(in.Category),
+		Author:   NewAuthorSummary(in.Author),
+		Status:   NewStatus(in.StatusID),
 	}
-	return
 }
 
 func NewTag(in *db.Tag) *Tag {
