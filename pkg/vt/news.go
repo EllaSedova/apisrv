@@ -1,8 +1,9 @@
 package vt
 
 import (
-	"apisrv/pkg/newsportal"
 	"context"
+
+	"apisrv/pkg/newsportal"
 
 	"apisrv/pkg/db"
 	"apisrv/pkg/embedlog"

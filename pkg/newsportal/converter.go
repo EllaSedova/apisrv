@@ -11,6 +11,7 @@ func newNews(in *db.News) *News {
 	return &News{
 		News:     in,
 		Category: newCategory(in.Category),
+		Author:   newAuthor(in.Author),
 	}
 }
 
@@ -53,4 +54,13 @@ func newTags(in []db.Tag) (out []Tag) {
 		out = append(out, *newTag(&in[i]))
 	}
 	return
+}
+
+func newAuthor(in *db.Author) *Author {
+	if in == nil {
+		return nil
+	}
+	return &Author{
+		Author: in,
+	}
 }

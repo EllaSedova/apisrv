@@ -1,8 +1,9 @@
 package vt
 
 import (
-	"apisrv/pkg/newsportal"
 	"net/http"
+
+	"apisrv/pkg/newsportal"
 
 	"apisrv/pkg/db"
 	"apisrv/pkg/embedlog"
@@ -23,6 +24,7 @@ const (
 	NSCategory = "category"
 	NSNews     = "news"
 	NSTag      = "tag"
+	NSAuthor   = "author"
 )
 
 var (
@@ -78,6 +80,7 @@ func New(dbo db.DB, logger embedlog.Logger, isDevel bool, m *newsportal.Manager)
 		NSCategory: NewCategoryService(dbo, logger),
 		NSNews:     NewNewsService(dbo, logger, m),
 		NSTag:      NewTagService(dbo, logger),
+		NSAuthor:   NewAuthorService(dbo, logger),
 	})
 
 	return rpc

@@ -5,10 +5,9 @@ import (
 	"net"
 	"time"
 
-	"apisrv/pkg/newsportal"
-
 	"apisrv/pkg/db"
 	"apisrv/pkg/embedlog"
+	"apisrv/pkg/newsportal"
 	"apisrv/pkg/vt"
 
 	"github.com/go-pg/pg/v10"

@@ -8,7 +8,7 @@ type NewsSummary struct {
 	Category    Category  `json:"categoryId"`
 	Foreword    string    `json:"foreword"`
 	Tags        []Tag     `json:"tags,array"`
-	Author      string    `json:"author"`
+	Author      Author    `json:"author"`
 	PublishedAt time.Time `json:"publishedAt"`
 }
 type News struct {
@@ -18,7 +18,7 @@ type News struct {
 	Foreword    string    `json:"foreword"`
 	Content     *string   `json:"content"`
 	Tags        []Tag     `json:"tags,array"`
-	Author      string    `json:"author"`
+	Author      Author    `json:"author"`
 	PublishedAt time.Time `json:"publishedAt"`
 }
 
@@ -32,4 +32,10 @@ type Category struct {
 type Tag struct {
 	ID    int    `json:"tagId"`
 	Title string `json:"title"`
+}
+
+type Author struct {
+	ID    int    `json:"authorId"`
+	Name  string `json:"name"`
+	Email string `json:"email"`
 }

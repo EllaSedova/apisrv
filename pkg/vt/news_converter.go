@@ -76,6 +76,20 @@ func NewNewsSummary(in *newsportal.News) *NewsSummary {
 		Tags:        NewTagSummaryList(in.Tags),
 		Category:    NewCategorySummary(in.Category.Category),
 		Status:      NewStatus(in.StatusID),
+		Author:      NewAuthorSummaryNew(in.Author.Author),
+	}
+}
+func NewAuthorSummaryNew(in *db.Author) *AuthorSummary {
+	if in == nil {
+		return nil
+	}
+
+	return &AuthorSummary{
+		ID:    in.ID,
+		Name:  in.Name,
+		Email: in.Email,
+
+		Status: NewStatus(in.StatusID),
 	}
 }
 

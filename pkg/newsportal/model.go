@@ -8,6 +8,7 @@ type News struct {
 	*db.News
 	Category *Category
 	Tags     []Tag
+	Author   *Author
 }
 
 type Category struct {
@@ -16,6 +17,10 @@ type Category struct {
 
 type Tag struct {
 	*db.Tag
+}
+
+type Author struct {
+	*db.Author
 }
 
 type NewsList []News

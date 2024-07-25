@@ -43,12 +43,18 @@ func TestMain(m *testing.M) {
 
 	realNews15 = News{
 		News: &db.News{ID: 15,
-			Title:       "AНовость5",
-			CategoryID:  1,
-			Foreword:    "Преамбула",
-			Content:     ptrs("Контент"),
-			TagIDs:      []int{1, 2, 3},
-			Author:      "Автор",
+			Title:      "AНовость5",
+			CategoryID: 1,
+			Foreword:   "Преамбула",
+			Content:    ptrs("Контент"),
+			TagIDs:     []int{1, 2, 3},
+			Author: &db.Author{
+				ID:       1,
+				Name:     "Имя",
+				Email:    "почта",
+				StatusID: 1,
+			},
+			AuthorID:    1,
 			PublishedAt: time.Date(2024, time.July, 17, 18, 25, 28, 10745000, time.Local),
 			StatusID:    1,
 			Category: &db.Category{
@@ -90,16 +96,28 @@ func TestMain(m *testing.M) {
 				},
 			},
 		},
+		Author: &Author{&db.Author{
+			ID:       1,
+			Name:     "Имя",
+			Email:    "почта",
+			StatusID: 1,
+		}},
 	}
 
 	realNews16 = News{
 		News: &db.News{ID: 16,
-			Title:       "Новость10",
-			CategoryID:  1,
-			Foreword:    "Преамбула",
-			Content:     ptrs("Контент"),
-			TagIDs:      []int{1, 2},
-			Author:      "Автор",
+			Title:      "Новость10",
+			CategoryID: 1,
+			Foreword:   "Преамбула",
+			Content:    ptrs("Контент"),
+			TagIDs:     []int{1, 2},
+			Author: &db.Author{
+				ID:       1,
+				Name:     "Имя",
+				Email:    "почта",
+				StatusID: 1,
+			},
+			AuthorID:    1,
 			PublishedAt: time.Date(2024, time.July, 17, 18, 25, 28, 10745000, time.Local),
 			StatusID:    1,
 			Category: &db.Category{
@@ -134,15 +152,27 @@ func TestMain(m *testing.M) {
 				},
 			},
 		},
+		Author: &Author{&db.Author{
+			ID:       1,
+			Name:     "Имя",
+			Email:    "почта",
+			StatusID: 1,
+		}},
 	}
 	realNews17 = News{
 		News: &db.News{ID: 17,
-			Title:       "BНовость17",
-			CategoryID:  1,
-			Foreword:    "Преамбула",
-			Content:     ptrs("Контент"),
-			TagIDs:      []int{1, 2},
-			Author:      "Автор",
+			Title:      "BНовость17",
+			CategoryID: 1,
+			Foreword:   "Преамбула",
+			Content:    ptrs("Контент"),
+			TagIDs:     []int{1, 2},
+			Author: &db.Author{
+				ID:       1,
+				Name:     "Имя",
+				Email:    "почта",
+				StatusID: 1,
+			},
+			AuthorID:    1,
 			PublishedAt: time.Date(2024, time.July, 17, 18, 25, 28, 10745000, time.Local),
 			StatusID:    1,
 			Category: &db.Category{
@@ -177,6 +207,12 @@ func TestMain(m *testing.M) {
 				},
 			},
 		},
+		Author: &Author{&db.Author{
+			ID:       1,
+			Name:     "Имя",
+			Email:    "почта",
+			StatusID: 1,
+		}},
 	}
 	os.Exit(m.Run())
 }
@@ -216,7 +252,11 @@ func TestNewsByID(t *testing.T) {
 			if tt.name == "invalid args" {
 				assert.Nil(t, got)
 			} else {
-				assert.Equalf(t, &tt.want, got, "NewsByID(%v, %v)", tt.args.ctx, tt.args.ID)
+				assert.Equalf(t, tt.want.News.Author, got.News.Author, "NewsByID(%v, %v)", tt.args.ctx, tt.args.ID)
+				assert.Equalf(t, tt.want.Category, got.Category, "NewsByID(%v, %v)", tt.args.ctx, tt.args.ID)
+				assert.Equalf(t, tt.want.Tags, got.Tags, "NewsByID(%v, %v)", tt.args.ctx, tt.args.ID)
+				assert.Equalf(t, tt.want.News, got.News, "NewsByID(%v, %v)", tt.args.ctx, tt.args.ID)
+				assert.Equalf(t, tt.want, *got, "NewsByID(%v, %v)", tt.args.ctx, tt.args.ID)
 			}
 		})
 	}

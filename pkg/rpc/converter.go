@@ -16,6 +16,7 @@ func newNews(in *newsportal.News) *News {
 		Content:     in.Content,
 		PublishedAt: in.PublishedAt,
 		Tags:        newTags(in.Tags),
+		Author:      *newAuthor(in.Author),
 		Category:    *newCategory(in.Category),
 	}
 
@@ -73,4 +74,16 @@ func newTags(in []newsportal.Tag) (out []Tag) {
 		out = append(out, *newTag(&in[i]))
 	}
 	return
+}
+
+func newAuthor(in *newsportal.Author) *Author {
+	if in == nil {
+		return nil
+	}
+
+	return &Author{
+		ID:    in.ID,
+		Name:  in.Name,
+		Email: in.Email,
+	}
 }
