@@ -221,7 +221,7 @@ func (s NewsService) dbSort(ops *ViewOps) db.OpFunc {
 	}
 
 	switch ops.SortColumn {
-	case db.Columns.News.ID, db.Columns.News.Title, db.Columns.News.CategoryID, db.Columns.News.Author, db.Columns.News.PublishedAt, db.Columns.News.StatusID:
+	case db.Columns.News.ID, db.Columns.News.Title, db.Columns.News.CategoryID, db.Columns.News.PublishedAt, db.Columns.News.StatusID, db.Columns.News.AuthorID:
 		v = db.WithSort(db.NewSortField(ops.SortColumn, ops.SortDesc))
 	}
 

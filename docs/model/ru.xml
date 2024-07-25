@@ -50,6 +50,7 @@
                         <publishedAtLabel>Дата публикации</publishedAtLabel>
                         <statusIdLabel>Статус</statusIdLabel>
                         <tagsLabel>Теги</tagsLabel>
+                        <authorIdLabel>Автор</authorIdLabel>
                     </Form>
                     <List>
                         <Title>Новости</Title>
@@ -58,10 +59,10 @@
                             <title>Название</title>
                             <categoryId>Категория</categoryId>
                             <foreword>Краткое содержание</foreword>
-                            <author>Автор</author>
                             <publishedAt>Дата публикации</publishedAt>
                             <statusId>Статус</statusId>
                             <tagIds>Теги</tagIds>
+                            <authorId>Автор</authorId>
                         </Filter>
                         <Headers>
                             <title>Название</title>
@@ -94,6 +95,34 @@
                         </Filter>
                         <Headers>
                             <title>Название</title>
+                            <status>Статус</status>
+                            <actions>Действия</actions>
+                        </Headers>
+                    </List>
+                </Entity>
+                <Entity Name="Author" Key="author">
+                    <Crumbs>
+                        <authorAdd>Добавить</authorAdd>
+                        <authorEdit>Редактировать</authorEdit>
+                        <authorList>Автор</authorList>
+                    </Crumbs>
+                    <Form>
+                        <nameLabel></nameLabel>
+                        <emailLabel>Email</emailLabel>
+                        <statusIdLabel>Статус</statusIdLabel>
+                    </Form>
+                    <List>
+                        <Title>Авторы</Title>
+                        <Filter>
+                            <quickFilterPlaceholder>Поиск по имени</quickFilterPlaceholder>
+                            <name>Имя</name>
+                            <email>Email</email>
+                            <statusId>Статус</statusId>
+                            <ids></ids>
+                        </Filter>
+                        <Headers>
+                            <name>Имя</name>
+                            <email>Email</email>
                             <status>Статус</status>
                             <actions>Действия</actions>
                         </Headers>

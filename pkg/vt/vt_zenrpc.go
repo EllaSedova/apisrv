@@ -840,11 +840,6 @@ func (NewsService) SMD() smd.ServiceInfo {
 								Type:     smd.Integer,
 							},
 							{
-								Name:     "author",
-								Optional: true,
-								Type:     smd.String,
-							},
-							{
 								Name:     "publishedAt",
 								Optional: true,
 								Type:     smd.String,
@@ -860,6 +855,11 @@ func (NewsService) SMD() smd.ServiceInfo {
 								Items: map[string]string{
 									"type": smd.Integer,
 								},
+							},
+							{
+								Name:     "authorId",
+								Optional: true,
+								Type:     smd.Integer,
 							},
 						},
 					},
@@ -908,11 +908,6 @@ func (NewsService) SMD() smd.ServiceInfo {
 								Type:     smd.Integer,
 							},
 							{
-								Name:     "author",
-								Optional: true,
-								Type:     smd.String,
-							},
-							{
 								Name:     "publishedAt",
 								Optional: true,
 								Type:     smd.String,
@@ -928,6 +923,11 @@ func (NewsService) SMD() smd.ServiceInfo {
 								Items: map[string]string{
 									"type": smd.Integer,
 								},
+							},
+							{
+								Name:     "authorId",
+								Optional: true,
+								Type:     smd.Integer,
 							},
 						},
 					},
@@ -992,12 +992,12 @@ func (NewsService) SMD() smd.ServiceInfo {
 									},
 								},
 								{
-									Name: "author",
+									Name: "publishedAt",
 									Type: smd.String,
 								},
 								{
-									Name: "publishedAt",
-									Type: smd.String,
+									Name: "authorId",
+									Type: smd.Integer,
 								},
 								{
 									Name: "tags",
@@ -1016,6 +1016,12 @@ func (NewsService) SMD() smd.ServiceInfo {
 									Name:     "status",
 									Optional: true,
 									Ref:      "#/definitions/Status",
+									Type:     smd.Object,
+								},
+								{
+									Name:     "author",
+									Optional: true,
+									Ref:      "#/definitions/AuthorSummary",
 									Type:     smd.Object,
 								},
 							},
@@ -1084,6 +1090,29 @@ func (NewsService) SMD() smd.ServiceInfo {
 								},
 							},
 						},
+						"AuthorSummary": {
+							Type: "object",
+							Properties: smd.PropertyList{
+								{
+									Name: "id",
+									Type: smd.Integer,
+								},
+								{
+									Name: "name",
+									Type: smd.String,
+								},
+								{
+									Name: "email",
+									Type: smd.String,
+								},
+								{
+									Name:     "status",
+									Optional: true,
+									Ref:      "#/definitions/Status",
+									Type:     smd.Object,
+								},
+							},
+						},
 					},
 				},
 				Errors: map[int]string{
@@ -1134,15 +1163,15 @@ func (NewsService) SMD() smd.ServiceInfo {
 							},
 						},
 						{
-							Name: "author",
-							Type: smd.String,
-						},
-						{
 							Name: "publishedAt",
 							Type: smd.String,
 						},
 						{
 							Name: "statusId",
+							Type: smd.Integer,
+						},
+						{
+							Name: "authorId",
 							Type: smd.Integer,
 						},
 						{
@@ -1155,6 +1184,12 @@ func (NewsService) SMD() smd.ServiceInfo {
 							Name:     "status",
 							Optional: true,
 							Ref:      "#/definitions/Status",
+							Type:     smd.Object,
+						},
+						{
+							Name:     "author",
+							Optional: true,
+							Ref:      "#/definitions/AuthorSummary",
 							Type:     smd.Object,
 						},
 					},
@@ -1201,6 +1236,29 @@ func (NewsService) SMD() smd.ServiceInfo {
 								{
 									Name: "title",
 									Type: smd.String,
+								},
+							},
+						},
+						"AuthorSummary": {
+							Type: "object",
+							Properties: smd.PropertyList{
+								{
+									Name: "id",
+									Type: smd.Integer,
+								},
+								{
+									Name: "name",
+									Type: smd.String,
+								},
+								{
+									Name: "email",
+									Type: smd.String,
+								},
+								{
+									Name:     "status",
+									Optional: true,
+									Ref:      "#/definitions/Status",
+									Type:     smd.Object,
 								},
 							},
 						},
@@ -1249,15 +1307,15 @@ func (NewsService) SMD() smd.ServiceInfo {
 								},
 							},
 							{
-								Name: "author",
-								Type: smd.String,
-							},
-							{
 								Name: "publishedAt",
 								Type: smd.String,
 							},
 							{
 								Name: "statusId",
+								Type: smd.Integer,
+							},
+							{
+								Name: "authorId",
 								Type: smd.Integer,
 							},
 							{
@@ -1270,6 +1328,12 @@ func (NewsService) SMD() smd.ServiceInfo {
 								Name:     "status",
 								Optional: true,
 								Ref:      "#/definitions/Status",
+								Type:     smd.Object,
+							},
+							{
+								Name:     "author",
+								Optional: true,
+								Ref:      "#/definitions/AuthorSummary",
 								Type:     smd.Object,
 							},
 						},
@@ -1319,6 +1383,29 @@ func (NewsService) SMD() smd.ServiceInfo {
 									},
 								},
 							},
+							"AuthorSummary": {
+								Type: "object",
+								Properties: smd.PropertyList{
+									{
+										Name: "id",
+										Type: smd.Integer,
+									},
+									{
+										Name: "name",
+										Type: smd.String,
+									},
+									{
+										Name: "email",
+										Type: smd.String,
+									},
+									{
+										Name:     "status",
+										Optional: true,
+										Ref:      "#/definitions/Status",
+										Type:     smd.Object,
+									},
+								},
+							},
 						},
 					},
 				},
@@ -1357,15 +1444,15 @@ func (NewsService) SMD() smd.ServiceInfo {
 							},
 						},
 						{
-							Name: "author",
-							Type: smd.String,
-						},
-						{
 							Name: "publishedAt",
 							Type: smd.String,
 						},
 						{
 							Name: "statusId",
+							Type: smd.Integer,
+						},
+						{
+							Name: "authorId",
 							Type: smd.Integer,
 						},
 						{
@@ -1378,6 +1465,12 @@ func (NewsService) SMD() smd.ServiceInfo {
 							Name:     "status",
 							Optional: true,
 							Ref:      "#/definitions/Status",
+							Type:     smd.Object,
+						},
+						{
+							Name:     "author",
+							Optional: true,
+							Ref:      "#/definitions/AuthorSummary",
 							Type:     smd.Object,
 						},
 					},
@@ -1427,6 +1520,29 @@ func (NewsService) SMD() smd.ServiceInfo {
 								},
 							},
 						},
+						"AuthorSummary": {
+							Type: "object",
+							Properties: smd.PropertyList{
+								{
+									Name: "id",
+									Type: smd.Integer,
+								},
+								{
+									Name: "name",
+									Type: smd.String,
+								},
+								{
+									Name: "email",
+									Type: smd.String,
+								},
+								{
+									Name:     "status",
+									Optional: true,
+									Ref:      "#/definitions/Status",
+									Type:     smd.Object,
+								},
+							},
+						},
 					},
 				},
 				Errors: map[int]string{
@@ -1471,15 +1587,15 @@ func (NewsService) SMD() smd.ServiceInfo {
 								},
 							},
 							{
-								Name: "author",
-								Type: smd.String,
-							},
-							{
 								Name: "publishedAt",
 								Type: smd.String,
 							},
 							{
 								Name: "statusId",
+								Type: smd.Integer,
+							},
+							{
+								Name: "authorId",
 								Type: smd.Integer,
 							},
 							{
@@ -1492,6 +1608,12 @@ func (NewsService) SMD() smd.ServiceInfo {
 								Name:     "status",
 								Optional: true,
 								Ref:      "#/definitions/Status",
+								Type:     smd.Object,
+							},
+							{
+								Name:     "author",
+								Optional: true,
+								Ref:      "#/definitions/AuthorSummary",
 								Type:     smd.Object,
 							},
 						},
@@ -1538,6 +1660,29 @@ func (NewsService) SMD() smd.ServiceInfo {
 									{
 										Name: "title",
 										Type: smd.String,
+									},
+								},
+							},
+							"AuthorSummary": {
+								Type: "object",
+								Properties: smd.PropertyList{
+									{
+										Name: "id",
+										Type: smd.Integer,
+									},
+									{
+										Name: "name",
+										Type: smd.String,
+									},
+									{
+										Name: "email",
+										Type: smd.String,
+									},
+									{
+										Name:     "status",
+										Optional: true,
+										Ref:      "#/definitions/Status",
+										Type:     smd.Object,
 									},
 								},
 							},
@@ -1612,15 +1757,15 @@ func (NewsService) SMD() smd.ServiceInfo {
 								},
 							},
 							{
-								Name: "author",
-								Type: smd.String,
-							},
-							{
 								Name: "publishedAt",
 								Type: smd.String,
 							},
 							{
 								Name: "statusId",
+								Type: smd.Integer,
+							},
+							{
+								Name: "authorId",
 								Type: smd.Integer,
 							},
 							{
@@ -1633,6 +1778,12 @@ func (NewsService) SMD() smd.ServiceInfo {
 								Name:     "status",
 								Optional: true,
 								Ref:      "#/definitions/Status",
+								Type:     smd.Object,
+							},
+							{
+								Name:     "author",
+								Optional: true,
+								Ref:      "#/definitions/AuthorSummary",
 								Type:     smd.Object,
 							},
 						},
@@ -1679,6 +1830,29 @@ func (NewsService) SMD() smd.ServiceInfo {
 									{
 										Name: "title",
 										Type: smd.String,
+									},
+								},
+							},
+							"AuthorSummary": {
+								Type: "object",
+								Properties: smd.PropertyList{
+									{
+										Name: "id",
+										Type: smd.Integer,
+									},
+									{
+										Name: "name",
+										Type: smd.String,
+									},
+									{
+										Name: "email",
+										Type: smd.String,
+									},
+									{
+										Name:     "status",
+										Optional: true,
+										Ref:      "#/definitions/Status",
+										Type:     smd.Object,
 									},
 								},
 							},
@@ -2522,6 +2696,685 @@ func (s TagService) Invoke(ctx context.Context, method string, params json.RawMe
 		}
 
 		resp.Set(s.Validate(ctx, args.Tag))
+
+	default:
+		resp = zenrpc.NewResponseError(nil, zenrpc.MethodNotFound, "", nil)
+	}
+
+	return resp
+}
+
+func (AuthorService) SMD() smd.ServiceInfo {
+	return smd.ServiceInfo{
+		Methods: map[string]smd.Service{
+			"Count": {
+				Description: `Count returns count Authors according to conditions in search params.`,
+				Parameters: []smd.JSONSchema{
+					{
+						Name:        "search",
+						Optional:    true,
+						Description: `AuthorSearch`,
+						Type:        smd.Object,
+						TypeName:    "AuthorSearch",
+						Properties: smd.PropertyList{
+							{
+								Name:     "id",
+								Optional: true,
+								Type:     smd.Integer,
+							},
+							{
+								Name:     "name",
+								Optional: true,
+								Type:     smd.String,
+							},
+							{
+								Name:     "email",
+								Optional: true,
+								Type:     smd.String,
+							},
+							{
+								Name:     "statusId",
+								Optional: true,
+								Type:     smd.Integer,
+							},
+							{
+								Name: "ids",
+								Type: smd.Array,
+								Items: map[string]string{
+									"type": smd.Integer,
+								},
+							},
+						},
+					},
+				},
+				Returns: smd.JSONSchema{
+					Description: `int`,
+					Type:        smd.Integer,
+				},
+				Errors: map[int]string{
+					500: "Internal Error",
+				},
+			},
+			"Get": {
+				Description: `Get returns а list of Authors according to conditions in search params.`,
+				Parameters: []smd.JSONSchema{
+					{
+						Name:        "search",
+						Optional:    true,
+						Description: `AuthorSearch`,
+						Type:        smd.Object,
+						TypeName:    "AuthorSearch",
+						Properties: smd.PropertyList{
+							{
+								Name:     "id",
+								Optional: true,
+								Type:     smd.Integer,
+							},
+							{
+								Name:     "name",
+								Optional: true,
+								Type:     smd.String,
+							},
+							{
+								Name:     "email",
+								Optional: true,
+								Type:     smd.String,
+							},
+							{
+								Name:     "statusId",
+								Optional: true,
+								Type:     smd.Integer,
+							},
+							{
+								Name: "ids",
+								Type: smd.Array,
+								Items: map[string]string{
+									"type": smd.Integer,
+								},
+							},
+						},
+					},
+					{
+						Name:        "viewOps",
+						Optional:    true,
+						Description: `ViewOps`,
+						Type:        smd.Object,
+						TypeName:    "ViewOps",
+						Properties: smd.PropertyList{
+							{
+								Name:        "page",
+								Description: `page number, default - 1`,
+								Type:        smd.Integer,
+							},
+							{
+								Name:        "pageSize",
+								Description: `items count per page, max - 500`,
+								Type:        smd.Integer,
+							},
+							{
+								Name:        "sortColumn",
+								Description: `sort by column name`,
+								Type:        smd.String,
+							},
+							{
+								Name:        "sortDesc",
+								Description: `descending sort`,
+								Type:        smd.Boolean,
+							},
+						},
+					},
+				},
+				Returns: smd.JSONSchema{
+					Description: `[]AuthorSummary`,
+					Type:        smd.Array,
+					TypeName:    "[]AuthorSummary",
+					Items: map[string]string{
+						"$ref": "#/definitions/AuthorSummary",
+					},
+					Definitions: map[string]smd.Definition{
+						"AuthorSummary": {
+							Type: "object",
+							Properties: smd.PropertyList{
+								{
+									Name: "id",
+									Type: smd.Integer,
+								},
+								{
+									Name: "name",
+									Type: smd.String,
+								},
+								{
+									Name: "email",
+									Type: smd.String,
+								},
+								{
+									Name:     "status",
+									Optional: true,
+									Ref:      "#/definitions/Status",
+									Type:     smd.Object,
+								},
+							},
+						},
+						"Status": {
+							Type: "object",
+							Properties: smd.PropertyList{
+								{
+									Name: "id",
+									Type: smd.Integer,
+								},
+								{
+									Name: "alias",
+									Type: smd.String,
+								},
+								{
+									Name: "title",
+									Type: smd.String,
+								},
+							},
+						},
+					},
+				},
+				Errors: map[int]string{
+					500: "Internal Error",
+				},
+			},
+			"GetByID": {
+				Description: `GetByID returns a Author by its ID.`,
+				Parameters: []smd.JSONSchema{
+					{
+						Name:        "id",
+						Description: `int`,
+						Type:        smd.Integer,
+					},
+				},
+				Returns: smd.JSONSchema{
+					Description: `Author`,
+					Optional:    true,
+					Type:        smd.Object,
+					TypeName:    "Author",
+					Properties: smd.PropertyList{
+						{
+							Name: "id",
+							Type: smd.Integer,
+						},
+						{
+							Name: "name",
+							Type: smd.String,
+						},
+						{
+							Name: "email",
+							Type: smd.String,
+						},
+						{
+							Name: "statusId",
+							Type: smd.Integer,
+						},
+						{
+							Name:     "status",
+							Optional: true,
+							Ref:      "#/definitions/Status",
+							Type:     smd.Object,
+						},
+					},
+					Definitions: map[string]smd.Definition{
+						"Status": {
+							Type: "object",
+							Properties: smd.PropertyList{
+								{
+									Name: "id",
+									Type: smd.Integer,
+								},
+								{
+									Name: "alias",
+									Type: smd.String,
+								},
+								{
+									Name: "title",
+									Type: smd.String,
+								},
+							},
+						},
+					},
+				},
+				Errors: map[int]string{
+					500: "Internal Error",
+					404: "Not Found",
+				},
+			},
+			"Add": {
+				Description: `Add adds a Author from the query.`,
+				Parameters: []smd.JSONSchema{
+					{
+						Name:        "author",
+						Description: `Author`,
+						Type:        smd.Object,
+						TypeName:    "Author",
+						Properties: smd.PropertyList{
+							{
+								Name: "id",
+								Type: smd.Integer,
+							},
+							{
+								Name: "name",
+								Type: smd.String,
+							},
+							{
+								Name: "email",
+								Type: smd.String,
+							},
+							{
+								Name: "statusId",
+								Type: smd.Integer,
+							},
+							{
+								Name:     "status",
+								Optional: true,
+								Ref:      "#/definitions/Status",
+								Type:     smd.Object,
+							},
+						},
+						Definitions: map[string]smd.Definition{
+							"Status": {
+								Type: "object",
+								Properties: smd.PropertyList{
+									{
+										Name: "id",
+										Type: smd.Integer,
+									},
+									{
+										Name: "alias",
+										Type: smd.String,
+									},
+									{
+										Name: "title",
+										Type: smd.String,
+									},
+								},
+							},
+						},
+					},
+				},
+				Returns: smd.JSONSchema{
+					Description: `Author`,
+					Optional:    true,
+					Type:        smd.Object,
+					TypeName:    "Author",
+					Properties: smd.PropertyList{
+						{
+							Name: "id",
+							Type: smd.Integer,
+						},
+						{
+							Name: "name",
+							Type: smd.String,
+						},
+						{
+							Name: "email",
+							Type: smd.String,
+						},
+						{
+							Name: "statusId",
+							Type: smd.Integer,
+						},
+						{
+							Name:     "status",
+							Optional: true,
+							Ref:      "#/definitions/Status",
+							Type:     smd.Object,
+						},
+					},
+					Definitions: map[string]smd.Definition{
+						"Status": {
+							Type: "object",
+							Properties: smd.PropertyList{
+								{
+									Name: "id",
+									Type: smd.Integer,
+								},
+								{
+									Name: "alias",
+									Type: smd.String,
+								},
+								{
+									Name: "title",
+									Type: smd.String,
+								},
+							},
+						},
+					},
+				},
+				Errors: map[int]string{
+					500: "Internal Error",
+					400: "Validation Error",
+				},
+			},
+			"Update": {
+				Description: `Update updates the Author data identified by id from the query.`,
+				Parameters: []smd.JSONSchema{
+					{
+						Name:     "author",
+						Type:     smd.Object,
+						TypeName: "Author",
+						Properties: smd.PropertyList{
+							{
+								Name: "id",
+								Type: smd.Integer,
+							},
+							{
+								Name: "name",
+								Type: smd.String,
+							},
+							{
+								Name: "email",
+								Type: smd.String,
+							},
+							{
+								Name: "statusId",
+								Type: smd.Integer,
+							},
+							{
+								Name:     "status",
+								Optional: true,
+								Ref:      "#/definitions/Status",
+								Type:     smd.Object,
+							},
+						},
+						Definitions: map[string]smd.Definition{
+							"Status": {
+								Type: "object",
+								Properties: smd.PropertyList{
+									{
+										Name: "id",
+										Type: smd.Integer,
+									},
+									{
+										Name: "alias",
+										Type: smd.String,
+									},
+									{
+										Name: "title",
+										Type: smd.String,
+									},
+								},
+							},
+						},
+					},
+				},
+				Returns: smd.JSONSchema{
+					Description: `Author`,
+					Type:        smd.Boolean,
+					TypeName:    "Author",
+				},
+				Errors: map[int]string{
+					500: "Internal Error",
+					400: "Validation Error",
+					404: "Not Found",
+				},
+			},
+			"Delete": {
+				Description: `Delete deletes the Author by its ID.`,
+				Parameters: []smd.JSONSchema{
+					{
+						Name:        "id",
+						Description: `int`,
+						Type:        smd.Integer,
+					},
+				},
+				Returns: smd.JSONSchema{
+					Description: `isDeleted`,
+					Type:        smd.Boolean,
+				},
+				Errors: map[int]string{
+					500: "Internal Error",
+					400: "Validation Error",
+					404: "Not Found",
+				},
+			},
+			"Validate": {
+				Description: `Validate verifies that Author data is valid.`,
+				Parameters: []smd.JSONSchema{
+					{
+						Name:        "author",
+						Description: `Author`,
+						Type:        smd.Object,
+						TypeName:    "Author",
+						Properties: smd.PropertyList{
+							{
+								Name: "id",
+								Type: smd.Integer,
+							},
+							{
+								Name: "name",
+								Type: smd.String,
+							},
+							{
+								Name: "email",
+								Type: smd.String,
+							},
+							{
+								Name: "statusId",
+								Type: smd.Integer,
+							},
+							{
+								Name:     "status",
+								Optional: true,
+								Ref:      "#/definitions/Status",
+								Type:     smd.Object,
+							},
+						},
+						Definitions: map[string]smd.Definition{
+							"Status": {
+								Type: "object",
+								Properties: smd.PropertyList{
+									{
+										Name: "id",
+										Type: smd.Integer,
+									},
+									{
+										Name: "alias",
+										Type: smd.String,
+									},
+									{
+										Name: "title",
+										Type: smd.String,
+									},
+								},
+							},
+						},
+					},
+				},
+				Returns: smd.JSONSchema{
+					Description: `[]FieldError`,
+					Type:        smd.Array,
+					TypeName:    "[]FieldError",
+					Items: map[string]string{
+						"$ref": "#/definitions/FieldError",
+					},
+					Definitions: map[string]smd.Definition{
+						"FieldError": {
+							Type: "object",
+							Properties: smd.PropertyList{
+								{
+									Name: "field",
+									Type: smd.String,
+								},
+								{
+									Name: "error",
+									Type: smd.String,
+								},
+								{
+									Name:        "constraint",
+									Optional:    true,
+									Description: `Help with generating an error message.`,
+									Ref:         "#/definitions/FieldErrorConstraint",
+									Type:        smd.Object,
+								},
+							},
+						},
+						"FieldErrorConstraint": {
+							Type: "object",
+							Properties: smd.PropertyList{
+								{
+									Name:        "max",
+									Description: `Max value for field.`,
+									Type:        smd.Integer,
+								},
+								{
+									Name:        "min",
+									Description: `Min value for field.`,
+									Type:        smd.Integer,
+								},
+							},
+						},
+					},
+				},
+				Errors: map[int]string{
+					500: "Internal Error",
+				},
+			},
+		},
+	}
+}
+
+// Invoke is as generated code from zenrpc cmd
+func (s AuthorService) Invoke(ctx context.Context, method string, params json.RawMessage) zenrpc.Response {
+	resp := zenrpc.Response{}
+	var err error
+
+	switch method {
+	case RPC.AuthorService.Count:
+		var args = struct {
+			Search *AuthorSearch `json:"search"`
+		}{}
+
+		if zenrpc.IsArray(params) {
+			if params, err = zenrpc.ConvertToObject([]string{"search"}, params); err != nil {
+				return zenrpc.NewResponseError(nil, zenrpc.InvalidParams, "", err.Error())
+			}
+		}
+
+		if len(params) > 0 {
+			if err := json.Unmarshal(params, &args); err != nil {
+				return zenrpc.NewResponseError(nil, zenrpc.InvalidParams, "", err.Error())
+			}
+		}
+
+		resp.Set(s.Count(ctx, args.Search))
+
+	case RPC.AuthorService.Get:
+		var args = struct {
+			Search  *AuthorSearch `json:"search"`
+			ViewOps *ViewOps      `json:"viewOps"`
+		}{}
+
+		if zenrpc.IsArray(params) {
+			if params, err = zenrpc.ConvertToObject([]string{"search", "viewOps"}, params); err != nil {
+				return zenrpc.NewResponseError(nil, zenrpc.InvalidParams, "", err.Error())
+			}
+		}
+
+		if len(params) > 0 {
+			if err := json.Unmarshal(params, &args); err != nil {
+				return zenrpc.NewResponseError(nil, zenrpc.InvalidParams, "", err.Error())
+			}
+		}
+
+		resp.Set(s.Get(ctx, args.Search, args.ViewOps))
+
+	case RPC.AuthorService.GetByID:
+		var args = struct {
+			Id int `json:"id"`
+		}{}
+
+		if zenrpc.IsArray(params) {
+			if params, err = zenrpc.ConvertToObject([]string{"id"}, params); err != nil {
+				return zenrpc.NewResponseError(nil, zenrpc.InvalidParams, "", err.Error())
+			}
+		}
+
+		if len(params) > 0 {
+			if err := json.Unmarshal(params, &args); err != nil {
+				return zenrpc.NewResponseError(nil, zenrpc.InvalidParams, "", err.Error())
+			}
+		}
+
+		resp.Set(s.GetByID(ctx, args.Id))
+
+	case RPC.AuthorService.Add:
+		var args = struct {
+			Author Author `json:"author"`
+		}{}
+
+		if zenrpc.IsArray(params) {
+			if params, err = zenrpc.ConvertToObject([]string{"author"}, params); err != nil {
+				return zenrpc.NewResponseError(nil, zenrpc.InvalidParams, "", err.Error())
+			}
+		}
+
+		if len(params) > 0 {
+			if err := json.Unmarshal(params, &args); err != nil {
+				return zenrpc.NewResponseError(nil, zenrpc.InvalidParams, "", err.Error())
+			}
+		}
+
+		resp.Set(s.Add(ctx, args.Author))
+
+	case RPC.AuthorService.Update:
+		var args = struct {
+			Author Author `json:"author"`
+		}{}
+
+		if zenrpc.IsArray(params) {
+			if params, err = zenrpc.ConvertToObject([]string{"author"}, params); err != nil {
+				return zenrpc.NewResponseError(nil, zenrpc.InvalidParams, "", err.Error())
+			}
+		}
+
+		if len(params) > 0 {
+			if err := json.Unmarshal(params, &args); err != nil {
+				return zenrpc.NewResponseError(nil, zenrpc.InvalidParams, "", err.Error())
+			}
+		}
+
+		resp.Set(s.Update(ctx, args.Author))
+
+	case RPC.AuthorService.Delete:
+		var args = struct {
+			Id int `json:"id"`
+		}{}
+
+		if zenrpc.IsArray(params) {
+			if params, err = zenrpc.ConvertToObject([]string{"id"}, params); err != nil {
+				return zenrpc.NewResponseError(nil, zenrpc.InvalidParams, "", err.Error())
+			}
+		}
+
+		if len(params) > 0 {
+			if err := json.Unmarshal(params, &args); err != nil {
+				return zenrpc.NewResponseError(nil, zenrpc.InvalidParams, "", err.Error())
+			}
+		}
+
+		resp.Set(s.Delete(ctx, args.Id))
+
+	case RPC.AuthorService.Validate:
+		var args = struct {
+			Author Author `json:"author"`
+		}{}
+
+		if zenrpc.IsArray(params) {
+			if params, err = zenrpc.ConvertToObject([]string{"author"}, params); err != nil {
+				return zenrpc.NewResponseError(nil, zenrpc.InvalidParams, "", err.Error())
+			}
+		}
+
+		if len(params) > 0 {
+			if err := json.Unmarshal(params, &args); err != nil {
+				return zenrpc.NewResponseError(nil, zenrpc.InvalidParams, "", err.Error())
+			}
+		}
+
+		resp.Set(s.Validate(ctx, args.Author))
 
 	default:
 		resp = zenrpc.NewResponseError(nil, zenrpc.MethodNotFound, "", nil)
