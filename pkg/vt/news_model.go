@@ -69,18 +69,18 @@ type CategorySummary struct {
 }
 
 type News struct {
-	ID          int              `json:"id"`
-	Title       string           `json:"title" validate:"required,max=255"`
-	CategoryID  int              `json:"categoryId" validate:"required"`
-	Foreword    string           `json:"foreword" validate:"required,max=1024"`
-	Content     *string          `json:"content"`
-	TagIDs      []int            `json:"tagIds" validate:"required"`
-	Author      string           `json:"author" validate:"required,max=64"`
-	PublishedAt time.Time        `json:"publishedAt" validate:"required"`
-	StatusID    int              `json:"statusId" validate:"required,status"`
-	Tags        []TagSummary     `json:"tags"`
-	Category    *CategorySummary `json:"category"`
-	Status      *Status          `json:"status"`
+	ID          int       `json:"id"`
+	Title       string    `json:"title" validate:"required,max=255"`
+	CategoryID  int       `json:"categoryId" validate:"required"`
+	Foreword    string    `json:"foreword" validate:"required,max=1024"`
+	Content     *string   `json:"content"`
+	TagIDs      []int     `json:"tagIds" validate:"required"`
+	Author      string    `json:"author" validate:"required,max=64"`
+	PublishedAt time.Time `json:"publishedAt" validate:"required"`
+	StatusID    int       `json:"statusId" validate:"required,status"`
+
+	Category *CategorySummary `json:"category"`
+	Status   *Status          `json:"status"`
 }
 
 func (n *News) ToDB() *db.News {

@@ -63,7 +63,6 @@
                             <publishedAt>Дата публикации</publishedAt>
                             <statusId>Статус</statusId>
                             <tagIds>Теги</tagIds>
-                            <tags>Теги все</tags>
                         </Filter>
                         <Headers>
                             <title>Название</title>
