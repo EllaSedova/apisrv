@@ -46,7 +46,6 @@
                 <Search Name="ForewordILike" AttrName="Foreword" SearchType="SEARCHTYPE_ILIKE"></Search>
                 <Search Name="ContentILike" AttrName="Content" SearchType="SEARCHTYPE_ILIKE"></Search>
                 <Search Name="TagIDILike" AttrName="TagIDs" SearchType="SEARCHTYPE_ARRAY_CONTAINS"></Search>
-
             </Searches>
         </Entity>
         <Entity Name="Tag" Namespace="news" Table="tags">
