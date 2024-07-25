@@ -47,7 +47,6 @@
                         <forewordLabel>Краткое содержание</forewordLabel>
                         <contentLabel>Содержание</contentLabel>
                         <tagIdsLabel>Теги</tagIdsLabel>
-                        <authorLabel>Автор</authorLabel>
                         <publishedAtLabel>Дата публикации</publishedAtLabel>
                         <statusIdLabel>Статус</statusIdLabel>
                         <tagsLabel>Теги</tagsLabel>

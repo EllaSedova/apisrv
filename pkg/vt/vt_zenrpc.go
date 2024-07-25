@@ -14,6 +14,7 @@ var RPC = struct {
 	CategoryService struct{ Count, Get, GetByID, Add, Update, Delete, Validate string }
 	NewsService     struct{ Count, Get, GetByID, Add, Update, Delete, Validate string }
 	TagService      struct{ Count, Get, GetByID, Add, Update, Delete, Validate string }
+	AuthorService   struct{ Count, Get, GetByID, Add, Update, Delete, Validate string }
 	AuthService     struct{ Login, Logout, Profile, ChangePassword, VfsAuthToken string }
 	UserService     struct{ Count, Get, GetByID, Add, Update, Delete, Validate string }
 }{
@@ -36,6 +37,15 @@ var RPC = struct {
 		Validate: "validate",
 	},
 	TagService: struct{ Count, Get, GetByID, Add, Update, Delete, Validate string }{
+		Count:    "count",
+		Get:      "get",
+		GetByID:  "getbyid",
+		Add:      "add",
+		Update:   "update",
+		Delete:   "delete",
+		Validate: "validate",
+	},
+	AuthorService: struct{ Count, Get, GetByID, Add, Update, Delete, Validate string }{
 		Count:    "count",
 		Get:      "get",
 		GetByID:  "getbyid",

@@ -34,6 +34,7 @@
                 <Attribute Name="StatusID" AttrName="StatusID" SearchName="StatusID" Summary="true" Search="true" Max="0" Min="0" Required="true" Validate="status"></Attribute>
                 <Attribute Name="IDs" SearchName="IDs" Summary="false" Search="true" Max="0" Min="0" Required="false" Validate=""></Attribute>
                 <Attribute Name="TagIDILike" SearchName="TagIDILike" Summary="false" Search="false" Max="0" Min="0" Required="false" Validate=""></Attribute>
+                <Attribute Name="AuthorID" AttrName="AuthorID" SearchName="AuthorID" Summary="true" Search="true" Max="0" Min="0" Required="true" Validate=""></Attribute>
             </Attributes>
             <Template>
                 <Attribute Name="Title" VTAttrName="Title" List="true" Form="HTML_INPUT" Search="HTML_INPUT"></Attribute>
@@ -46,6 +47,8 @@
                 <Attribute Name="StatusID" VTAttrName="StatusID" List="true" Form="HTML_INPUT" Search="HTML_INPUT"></Attribute>
                 <Attribute Name="IDs" VTAttrName="IDs" List="false" Form="HTML_NONE" Search="HTML_NONE"></Attribute>
                 <Attribute Name="Tags" VTAttrName="TagIDs" List="true" FKOpts="title" Form="HTML_UNKNOWN" Search="HTML_NONE"></Attribute>
+                <Attribute Name="AuthorID" VTAttrName="AuthorID" List="false" FKOpts="name" Form="HTML_INPUT" Search="HTML_INPUT"></Attribute>
+                <Attribute Name="Author" VTAttrName="AuthorID" List="true" FKOpts="name" Form="" Search="HTML_NONE"></Attribute>
             </Template>
         </Entity>
         <Entity Name="Tag" Mode="Full">
@@ -58,6 +61,22 @@
             </Attributes>
             <Template>
                 <Attribute Name="Title" VTAttrName="Title" List="true" Form="HTML_INPUT" Search="HTML_INPUT"></Attribute>
+                <Attribute Name="StatusID" VTAttrName="StatusID" List="true" Form="HTML_INPUT" Search="HTML_INPUT"></Attribute>
+                <Attribute Name="IDs" VTAttrName="IDs" List="false" Form="HTML_NONE" Search="HTML_SELECT"></Attribute>
+            </Template>
+        </Entity>
+        <Entity Name="Author" Mode="Full">
+            <TerminalPath>authors</TerminalPath>
+            <Attributes>
+                <Attribute Name="ID" AttrName="ID" SearchName="ID" Summary="true" Search="true" Max="0" Min="0" Required="false" Validate=""></Attribute>
+                <Attribute Name="Name" AttrName="Name" SearchName="NameILike" Summary="true" Search="true" Max="64" Min="0" Required="true" Validate=""></Attribute>
+                <Attribute Name="Email" AttrName="Email" SearchName="EmailILike" Summary="true" Search="true" Max="64" Min="0" Required="true" Validate="email"></Attribute>
+                <Attribute Name="StatusID" AttrName="StatusID" SearchName="StatusID" Summary="true" Search="true" Max="0" Min="0" Required="true" Validate="status"></Attribute>
+                <Attribute Name="IDs" SearchName="IDs" Summary="false" Search="true" Max="0" Min="0" Required="false" Validate=""></Attribute>
+            </Attributes>
+            <Template>
+                <Attribute Name="Name" VTAttrName="Name" List="true" Form="HTML_INPUT" Search="HTML_INPUT"></Attribute>
+                <Attribute Name="Email" VTAttrName="Email" List="true" Form="HTML_INPUT" Search="HTML_INPUT"></Attribute>
                 <Attribute Name="StatusID" VTAttrName="StatusID" List="true" Form="HTML_INPUT" Search="HTML_INPUT"></Attribute>
                 <Attribute Name="IDs" VTAttrName="IDs" List="false" Form="HTML_NONE" Search="HTML_SELECT"></Attribute>
             </Template>

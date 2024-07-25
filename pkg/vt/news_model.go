@@ -75,12 +75,13 @@ type News struct {
 	Foreword    string    `json:"foreword" validate:"required,max=1024"`
 	Content     *string   `json:"content"`
 	TagIDs      []int     `json:"tagIds" validate:"required"`
-	Author      string    `json:"author" validate:"required,max=64"`
 	PublishedAt time.Time `json:"publishedAt" validate:"required"`
 	StatusID    int       `json:"statusId" validate:"required,status"`
+	AuthorID    int       `json:"authorId" validate:"required"`
 
 	Category *CategorySummary `json:"category"`
 	Status   *Status          `json:"status"`
+	Author   *AuthorSummary   `json:"author"`
 }
 
 func (n *News) ToDB() *db.News {
@@ -95,9 +96,9 @@ func (n *News) ToDB() *db.News {
 		Foreword:    n.Foreword,
 		Content:     n.Content,
 		TagIDs:      n.TagIDs,
-		Author:      n.Author,
 		PublishedAt: n.PublishedAt,
 		StatusID:    n.StatusID,
+		AuthorID:    n.AuthorID,
 	}
 
 	return news
@@ -109,10 +110,10 @@ type NewsSearch struct {
 	CategoryID  *int       `json:"categoryId"`
 	Foreword    *string    `json:"foreword"`
 	TagIDs      *int       `json:"tagIds"`
-	Author      *string    `json:"author"`
 	PublishedAt *time.Time `json:"publishedAt"`
 	StatusID    *int       `json:"statusId"`
 	IDs         []int      `json:"ids"`
+	AuthorID    *int       `json:"authorId"`
 }
 
 func (ns *NewsSearch) ToDB() *db.NewsSearch {
@@ -126,10 +127,10 @@ func (ns *NewsSearch) ToDB() *db.NewsSearch {
 		CategoryID:    ns.CategoryID,
 		ForewordILike: ns.Foreword,
 		TagIDILike:    ns.TagIDs,
-		AuthorILike:   ns.Author,
 		PublishedAt:   ns.PublishedAt,
 		StatusID:      ns.StatusID,
 		IDs:           ns.IDs,
+		AuthorID:      ns.AuthorID,
 	}
 }
 
@@ -138,11 +139,12 @@ type NewsSummary struct {
 	Title       string           `json:"title"`
 	CategoryID  int              `json:"categoryId"`
 	TagIDs      []int            `json:"tagIds"`
-	Author      string           `json:"author"`
 	PublishedAt time.Time        `json:"publishedAt"`
+	AuthorID    int              `json:"authorId"`
 	Tags        []TagSummary     `json:"tags"`
 	Category    *CategorySummary `json:"category"`
 	Status      *Status          `json:"status"`
+	Author      *AuthorSummary   `json:"author"`
 }
 
 type Tag struct {
@@ -190,6 +192,60 @@ func (ts *TagSearch) ToDB() *db.TagSearch {
 type TagSummary struct {
 	ID    int    `json:"id"`
 	Title string `json:"title"`
+
+	Status *Status `json:"status"`
+}
+
+type Author struct {
+	ID       int    `json:"id"`
+	Name     string `json:"name" validate:"required,max=64"`
+	Email    string `json:"email" validate:"required,email,max=64"`
+	StatusID int    `json:"statusId" validate:"required,status"`
+
+	Status *Status `json:"status"`
+}
+
+func (a *Author) ToDB() *db.Author {
+	if a == nil {
+		return nil
+	}
+
+	author := &db.Author{
+		ID:       a.ID,
+		Name:     a.Name,
+		Email:    a.Email,
+		StatusID: a.StatusID,
+	}
+
+	return author
+}
+
+type AuthorSearch struct {
+	ID       *int    `json:"id"`
+	Name     *string `json:"name"`
+	Email    *string `json:"email"`
+	StatusID *int    `json:"statusId"`
+	IDs      []int   `json:"ids"`
+}
+
+func (as *AuthorSearch) ToDB() *db.AuthorSearch {
+	if as == nil {
+		return nil
+	}
+
+	return &db.AuthorSearch{
+		ID:         as.ID,
+		NameILike:  as.Name,
+		EmailILike: as.Email,
+		StatusID:   as.StatusID,
+		IDs:        as.IDs,
+	}
+}
+
+type AuthorSummary struct {
+	ID    int    `json:"id"`
+	Name  string `json:"name"`
+	Email string `json:"email"`
 
 	Status *Status `json:"status"`
 }

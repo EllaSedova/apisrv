@@ -50,12 +50,13 @@ func NewNews(in *db.News) *News {
 		Foreword:    in.Foreword,
 		Content:     in.Content,
 		TagIDs:      in.TagIDs,
-		Author:      in.Author,
 		PublishedAt: in.PublishedAt,
 		StatusID:    in.StatusID,
+		AuthorID:    in.AuthorID,
 
 		Category: NewCategorySummary(in.Category),
 		Status:   NewStatus(in.StatusID),
+		Author:   NewAuthorSummary(in.Author),
 	}
 
 	return news
@@ -71,7 +72,6 @@ func NewNewsSummary(in *newsportal.News) *NewsSummary {
 		Title:       in.Title,
 		CategoryID:  in.CategoryID,
 		TagIDs:      in.TagIDs,
-		Author:      in.Author,
 		PublishedAt: in.PublishedAt,
 		Tags:        NewTagSummaryList(in.Tags),
 		Category:    NewCategorySummary(in.Category.Category),
@@ -110,6 +110,37 @@ func NewTagSummary(in *db.Tag) *TagSummary {
 	return &TagSummary{
 		ID:    in.ID,
 		Title: in.Title,
+
+		Status: NewStatus(in.StatusID),
+	}
+}
+
+func NewAuthor(in *db.Author) *Author {
+	if in == nil {
+		return nil
+	}
+
+	author := &Author{
+		ID:       in.ID,
+		Name:     in.Name,
+		Email:    in.Email,
+		StatusID: in.StatusID,
+
+		Status: NewStatus(in.StatusID),
+	}
+
+	return author
+}
+
+func NewAuthorSummary(in *db.Author) *AuthorSummary {
+	if in == nil {
+		return nil
+	}
+
+	return &AuthorSummary{
+		ID:    in.ID,
+		Name:  in.Name,
+		Email: in.Email,
 
 		Status: NewStatus(in.StatusID),
 	}
