@@ -20,18 +20,21 @@ func NewNewsRepo(db orm.DB) NewsRepo {
 	return NewsRepo{
 		db: db,
 		filters: map[string][]Filter{
+			Tables.Author.Name:   {StatusFilter},
 			Tables.Category.Name: {StatusFilter},
 			Tables.News.Name:     {StatusFilter},
 			Tables.Tag.Name:      {StatusFilter},
 		},
 		sort: map[string][]SortField{
+			Tables.Author.Name:   {{Column: Columns.Author.ID, Direction: SortDesc}},
 			Tables.Category.Name: {{Column: Columns.Category.Title, Direction: SortAsc}},
 			Tables.News.Name:     {{Column: Columns.News.Title, Direction: SortAsc}},
 			Tables.Tag.Name:      {{Column: Columns.Tag.Title, Direction: SortAsc}},
 		},
 		join: map[string][]string{
+			Tables.Author.Name:   {TableColumns},
 			Tables.Category.Name: {TableColumns},
-			Tables.News.Name:     {TableColumns, Columns.News.Category},
+			Tables.News.Name:     {TableColumns, Columns.News.Category, Columns.News.Author},
 			Tables.Tag.Name:      {TableColumns},
 		},
 	}
@@ -54,6 +57,79 @@ func (nr NewsRepo) WithEnabledOnly() NewsRepo {
 	nr.filters = f
 
 	return nr
+}
+
+/*** Author ***/
+
+// FullAuthor returns full joins with all columns
+func (nr NewsRepo) FullAuthor() OpFunc {
+	return WithColumns(nr.join[Tables.Author.Name]...)
+}
+
+// DefaultAuthorSort returns default sort.
+func (nr NewsRepo) DefaultAuthorSort() OpFunc {
+	return WithSort(nr.sort[Tables.Author.Name]...)
+}
+
+// AuthorByID is a function that returns Author by ID(s) or nil.
+func (nr NewsRepo) AuthorByID(ctx context.Context, id int, ops ...OpFunc) (*Author, error) {
+	return nr.OneAuthor(ctx, &AuthorSearch{ID: &id}, ops...)
+}
+
+// OneAuthor is a function that returns one Author by filters. It could return pg.ErrMultiRows.
+func (nr NewsRepo) OneAuthor(ctx context.Context, search *AuthorSearch, ops ...OpFunc) (*Author, error) {
+	obj := &Author{}
+	err := buildQuery(ctx, nr.db, obj, search, nr.filters[Tables.Author.Name], PagerTwo, ops...).Select()
+
+	if errors.Is(err, pg.ErrMultiRows) {
+		return nil, err
+	} else if errors.Is(err, pg.ErrNoRows) {
+		return nil, nil
+	}
+
+	return obj, err
+}
+
+// AuthorsByFilters returns Author list.
+func (nr NewsRepo) AuthorsByFilters(ctx context.Context, search *AuthorSearch, pager Pager, ops ...OpFunc) (authors []Author, err error) {
+	err = buildQuery(ctx, nr.db, &authors, search, nr.filters[Tables.Author.Name], pager, ops...).Select()
+	return
+}
+
+// CountAuthors returns count
+func (nr NewsRepo) CountAuthors(ctx context.Context, search *AuthorSearch, ops ...OpFunc) (int, error) {
+	return buildQuery(ctx, nr.db, &Author{}, search, nr.filters[Tables.Author.Name], PagerOne, ops...).Count()
+}
+
+// AddAuthor adds Author to DB.
+func (nr NewsRepo) AddAuthor(ctx context.Context, author *Author, ops ...OpFunc) (*Author, error) {
+	q := nr.db.ModelContext(ctx, author)
+	applyOps(q, ops...)
+	_, err := q.Insert()
+
+	return author, err
+}
+
+// UpdateAuthor updates Author in DB.
+func (nr NewsRepo) UpdateAuthor(ctx context.Context, author *Author, ops ...OpFunc) (bool, error) {
+	q := nr.db.ModelContext(ctx, author).WherePK()
+	if len(ops) == 0 {
+		q = q.ExcludeColumn(Columns.Author.ID)
+	}
+	applyOps(q, ops...)
+	res, err := q.Update()
+	if err != nil {
+		return false, err
+	}
+
+	return res.RowsAffected() > 0, err
+}
+
+// DeleteAuthor set statusId to deleted in DB.
+func (nr NewsRepo) DeleteAuthor(ctx context.Context, id int) (deleted bool, err error) {
+	author := &Author{ID: id, StatusID: StatusDeleted}
+
+	return nr.UpdateAuthor(ctx, author, WithColumns(Columns.Author.StatusID))
 }
 
 /*** Category ***/
