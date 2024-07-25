@@ -254,11 +254,6 @@ func (NewsService) SMD() smd.ServiceInfo {
 									},
 								},
 								{
-									Name: "author",
-									Ref:  "#/definitions/Author",
-									Type: smd.Object,
-								},
-								{
 									Name: "publishedAt",
 									Type: smd.String,
 								},
@@ -295,23 +290,6 @@ func (NewsService) SMD() smd.ServiceInfo {
 								},
 								{
 									Name: "title",
-									Type: smd.String,
-								},
-							},
-						},
-						"Author": {
-							Type: "object",
-							Properties: smd.PropertyList{
-								{
-									Name: "authorId",
-									Type: smd.Integer,
-								},
-								{
-									Name: "name",
-									Type: smd.String,
-								},
-								{
-									Name: "email",
 									Type: smd.String,
 								},
 							},

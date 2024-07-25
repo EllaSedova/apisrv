@@ -22,9 +22,7 @@ var nm *newsportal.Manager
 var ss *NewsService
 var e *echo.Echo
 var realNewsSummary NewsSummary
-var wrongNewsSummary NewsSummary
 var realNews News
-var wrongNews News
 
 func ptrs(r string) *string { return &r }
 func ptri(r int) *int       { return &r }
@@ -102,11 +100,6 @@ func TestMain(m *testing.M) {
 				ID:    3,
 				Title: "заголовок3",
 			},
-		},
-		Author: Author{
-			ID:    1,
-			Name:  "Имя1",
-			Email: "почта",
 		},
 		PublishedAt: time.Date(2024, time.July, 17, 18, 25, 28, 10745000, time.Local),
 	}

@@ -32,7 +32,6 @@ func newNewsSummary(in *newsportal.News) *NewsSummary {
 		Title:       in.Title,
 		Foreword:    in.Foreword,
 		PublishedAt: in.PublishedAt,
-		Author:      *newAuthor(in.Author),
 		Tags:        newTags(in.Tags),
 		Category:    *newCategory(in.Category),
 	}
