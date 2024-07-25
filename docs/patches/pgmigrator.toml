@@ -1,0 +1,12 @@
+[App]
+Table = "public.pgMigrations"
+StatementTimeout = "5s"
+Filemask = "\\d{4}-\\d{2}-\\d{2}-\\S+.sql"
+
+[Database]
+Addr     = "localhost:5432"
+User     = "postgres"
+Password = "postgres"
+Database = "newsportal"
+PoolSize = 5
+ApplicationName = "newsportal"
