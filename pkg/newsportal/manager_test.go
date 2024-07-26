@@ -50,8 +50,8 @@ func TestMain(m *testing.M) {
 			TagIDs:     []int{1, 2, 3},
 			Author: &db.Author{
 				ID:       1,
-				Name:     "Имя",
-				Email:    "почта",
+				Name:     "Имя1",
+				Email:    "mail2@yandex.ru",
 				StatusID: 1,
 			},
 			AuthorID:    1,
@@ -98,8 +98,8 @@ func TestMain(m *testing.M) {
 		},
 		Author: &Author{&db.Author{
 			ID:       1,
-			Name:     "Имя",
-			Email:    "почта",
+			Name:     "Имя1",
+			Email:    "mail2@yandex.ru",
 			StatusID: 1,
 		}},
 	}
@@ -113,8 +113,8 @@ func TestMain(m *testing.M) {
 			TagIDs:     []int{1, 2},
 			Author: &db.Author{
 				ID:       1,
-				Name:     "Имя",
-				Email:    "почта",
+				Name:     "Имя1",
+				Email:    "mail2@yandex.ru",
 				StatusID: 1,
 			},
 			AuthorID:    1,
@@ -154,8 +154,8 @@ func TestMain(m *testing.M) {
 		},
 		Author: &Author{&db.Author{
 			ID:       1,
-			Name:     "Имя",
-			Email:    "почта",
+			Name:     "Имя1",
+			Email:    "mail2@yandex.ru",
 			StatusID: 1,
 		}},
 	}
@@ -168,8 +168,8 @@ func TestMain(m *testing.M) {
 			TagIDs:     []int{1, 2},
 			Author: &db.Author{
 				ID:       1,
-				Name:     "Имя",
-				Email:    "почта",
+				Name:     "Имя1",
+				Email:    "mail2@yandex.ru",
 				StatusID: 1,
 			},
 			AuthorID:    1,
@@ -209,8 +209,8 @@ func TestMain(m *testing.M) {
 		},
 		Author: &Author{&db.Author{
 			ID:       1,
-			Name:     "Имя",
-			Email:    "почта",
+			Name:     "Имя1",
+			Email:    "mail2@yandex.ru",
 			StatusID: 1,
 		}},
 	}
@@ -478,7 +478,7 @@ func TestManager_Authors(t *testing.T) {
 			args: args{
 				ctx: context.Background(),
 			},
-			want:    []Author{{&db.Author{ID: 1, Name: "Имя1", Email: "почта", StatusID: 1}}, {&db.Author{ID: 2, Name: "Имя2", Email: "mail@gmail.com", StatusID: 1}}},
+			want:    []Author{{&db.Author{ID: 2, Name: "Имя2", Email: "mail@gmail.com", StatusID: 1}}, {&db.Author{ID: 1, Name: "Имя1", Email: "mail2@yandex.ru", StatusID: 1}}},
 			wantErr: assert.NoError,
 		},
 	}

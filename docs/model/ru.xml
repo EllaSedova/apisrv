@@ -107,7 +107,7 @@
                         <authorList>Автор</authorList>
                     </Crumbs>
                     <Form>
-                        <nameLabel></nameLabel>
+                        <nameLabel>Имя</nameLabel>
                         <emailLabel>Email</emailLabel>
                         <statusIdLabel>Статус</statusIdLabel>
                     </Form>

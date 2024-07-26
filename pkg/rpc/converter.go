@@ -2,6 +2,7 @@ package rpc
 
 import (
 	"apisrv/pkg/newsportal"
+	"time"
 )
 
 func newNews(in *newsportal.News) *News {
@@ -14,7 +15,7 @@ func newNews(in *newsportal.News) *News {
 		Title:       in.Title,
 		Foreword:    in.Foreword,
 		Content:     in.Content,
-		PublishedAt: in.PublishedAt,
+		PublishedAt: in.PublishedAt.Format(time.RFC822),
 		Tags:        newTags(in.Tags),
 		Author:      *newAuthor(in.Author),
 		Category:    *newCategory(in.Category),
@@ -31,7 +32,7 @@ func newNewsSummary(in *newsportal.News) *NewsSummary {
 		ID:          in.ID,
 		Title:       in.Title,
 		Foreword:    in.Foreword,
-		PublishedAt: in.PublishedAt,
+		PublishedAt: in.PublishedAt.Format(time.RFC822),
 		Tags:        newTags(in.Tags),
 		Category:    *newCategory(in.Category),
 	}

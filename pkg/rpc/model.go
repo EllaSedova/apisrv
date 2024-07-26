@@ -1,24 +1,23 @@
 package rpc
 
-import "time"
-
 type NewsSummary struct {
-	ID          int       `json:"newsId"`
-	Title       string    `json:"title"`
-	Category    Category  `json:"categoryId"`
-	Foreword    string    `json:"foreword"`
-	Tags        []Tag     `json:"tags,array"`
-	PublishedAt time.Time `json:"publishedAt"`
+	ID          int      `json:"newsId"`
+	Title       string   `json:"title"`
+	Category    Category `json:"categoryId"`
+	Foreword    string   `json:"foreword"`
+	Tags        []Tag    `json:"tags,array"`
+	PublishedAt string   `json:"publishedAt"`
 }
+
 type News struct {
-	ID          int       `json:"newsId"`
-	Title       string    `json:"title"`
-	Category    Category  `json:"categoryId"`
-	Foreword    string    `json:"foreword"`
-	Content     *string   `json:"content"`
-	Tags        []Tag     `json:"tags,array"`
-	Author      Author    `json:"author"`
-	PublishedAt time.Time `json:"publishedAt"`
+	ID          int      `json:"newsId"`
+	Title       string   `json:"title"`
+	Category    Category `json:"categoryId"`
+	Foreword    string   `json:"foreword"`
+	Content     *string  `json:"content"`
+	Tags        []Tag    `json:"tags,array"`
+	Author      Author   `json:"author"`
+	PublishedAt string   `json:"publishedAt"`
 }
 
 type Category struct {

@@ -3,14 +3,12 @@ package rpc
 import (
 	"context"
 	"fmt"
-	"log"
-	"os"
-	"testing"
-	"time"
-
 	"github.com/go-pg/pg/v10"
 	"github.com/labstack/echo/v4"
 	"github.com/stretchr/testify/assert"
+	"log"
+	"os"
+	"testing"
 
 	"apisrv/pkg/db"
 	"apisrv/pkg/newsportal"
@@ -73,9 +71,9 @@ func TestMain(m *testing.M) {
 		Author: Author{
 			ID:    1,
 			Name:  "Имя1",
-			Email: "почта",
+			Email: "mail2@yandex.ru",
 		},
-		PublishedAt: time.Date(2024, time.July, 17, 18, 25, 28, 10745000, time.Local),
+		PublishedAt: "17 Jul 24 18:25 MSK",
 	}
 	realNewsSummary = NewsSummary{
 		ID:    15,
@@ -101,7 +99,7 @@ func TestMain(m *testing.M) {
 				Title: "заголовок3",
 			},
 		},
-		PublishedAt: time.Date(2024, time.July, 17, 18, 25, 28, 10745000, time.Local),
+		PublishedAt: "17 Jul 24 18:25 MSK",
 	}
 	os.Exit(m.Run())
 }

@@ -253,6 +253,7 @@ func (s NewsService) Get(ctx context.Context, search *NewsSearch, viewOps *ViewO
 	if err != nil {
 		return nil, InternalError(err)
 	}
+
 	newsList := newsportal.NewNewsList(list)
 	err = s.m.FillTags(ctx, newsList)
 
